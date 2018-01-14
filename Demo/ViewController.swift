@@ -18,14 +18,14 @@ class ViewController: UIViewController {
     //THScrollView minimap set
     @IBOutlet weak var minimapView: THMinimapView!
     var minimapDataSource: THMinimapDataSource?
-    
+
     //THScrollView content set
     var audioContentView = AudioContentView()
     var videoContentView = VideoContentView()
     var textContentView = TextContentView()
     var titleLabel = UILabel()
     var markerDataSource: MarkerViewDataSource!
-    
+
      var markerArray = [MarkerView]()
 
     //THEditor set
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
 
         // set minimap
         setupMinimap(thumbnailImage: thumbnailImage)
-        
+
         // set contentView
         setupContentView()
 
@@ -72,24 +72,24 @@ class ViewController: UIViewController {
         // set marker control
         setupMarkerControl()
     }
-    
+
     func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
         tileImageDataSource = MyTileImageViewDataSource(imageSize: imageSize, tileSize: tileSize, imageURL: imageURL)
-        
+
         tileImageDataSource?.delegate = self
         tileImageDataSource?.thumbnailImageName = imageName
-        
+
         // 줌을 가장 많이 확대한 수준
         tileImageDataSource?.maxTileLevel = 5
-        
+
         // 줌이 가장 확대가 안 된 수준
         tileImageDataSource?.minTileLevel = 1
         tileImageDataSource?.maxZoomLevel = 8
         tileImageDataSource?.imageExtension = imageExtension
         tileImageScrollView.set(dataSource: tileImageDataSource!)
-        
+
         tileImageDataSource?.requestBackgroundImage { _ in
-            
+
         }
     }
 
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
         // markerData Source 설정
         markerDataSource = MarkerViewDataSource(scrollView: tileImageScrollView, imageSize: imageSize, ratioByImage: ratio, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
     }
-    
+
     func setupEditor() {
         // edit center point 설정
         centerPoint.frame = CGRect(x: tileImageScrollView.frame.width/2 - 5 , y: tileImageScrollView.frame.height/2 + (self.navigationController?.navigationBar.frame.height)! - 15, width: CGFloat(10), height: CGFloat(10))

@@ -16,7 +16,7 @@ class MyMinimapDataSource: THMinimapDataSource {
     var borderWidth: CGFloat
     var borderColor: UIColor
     var downSizeRatio: CGFloat
-    
+
     init(scrollView: UIScrollView, thumbnailImage: UIImage, originImageSize: CGSize?) {
         self.scrollView = scrollView
         self.thumbnailImage = thumbnailImage
@@ -25,7 +25,7 @@ class MyMinimapDataSource: THMinimapDataSource {
         self.borderColor = UIColor()
         self.downSizeRatio = 0.0
     }
-    
+
     func resizeMinimapView(minimapView: THMinimapView) {
         let rect = self.scrollViewVisibleSize.divideCGRectByDouble(ratio: self.downSizeRatio)
         minimapView.focusedBoxView?.frame = currentRect(rect: rect)

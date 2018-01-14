@@ -32,7 +32,7 @@ public class MarkerView: UIView {
     var textLink: String?
     var textContent: String?
     var isSelected = false
-    
+
     public func set(dataSource: MarkerViewDataSource, xFloat: CGFloat, yFloat: CGFloat, zoomScale: CGFloat, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, isTextContent: Bool) {
         // marker 위치 설정후 scrollview에 추가
         self.dataSource = dataSource
@@ -46,22 +46,22 @@ public class MarkerView: UIView {
         destinationRect.size.height = dataSource.scrollView.frame.height/zoomScale
         destinationRect.origin.x = xFloat - destinationRect.size.width/2
         destinationRect.origin.y = yFloat - destinationRect.size.height/2
-        
+
         // marker tap 설정
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
         markerTapGestureRecognizer.delegate = self
         self.addGestureRecognizer(markerTapGestureRecognizer)
-        
+
         // content 존재 여부 설정
         self.isTitleContent = isTitleContent
         self.isAudioContent = isAudioContent
         self.isVideoContent = isVideoContent
         self.isTextContent = isTextContent
-        
+
         markIndex = UserDefaults.standard.integer(forKey: "integerKeyName")
         UserDefaults.standard.set(markIndex+1, forKey: "integerKeyName")
     }
-    
+
     // marker image 설정
     func setMarkerImage(markerImage: UIImage) {
         imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
@@ -69,29 +69,29 @@ public class MarkerView: UIView {
         imageView?.image = markerImage
         self.addSubview(imageView!)
     }
-    
+
     // 비디오 url 설정
     func setVideoContent(videoUrl: URL) {
         videoURL = videoUrl
     }
-    
+
     // 오디오 url 설정
     func setAudioContent(audioUrl: URL) {
         audioURL = audioUrl
     }
-    
+
     // title string 설정
     func setTitle(title: String) {
         self.title = title
     }
-    
+
     // text string 설정
     func setText(title: String, link: String, content: String) {
         self.textTitle = title
         self.textLink = link
         self.textContent = content
     }
-    
+
     // 마커 클릭식, contentView set
     private func markerContentSet() {
         // content 존재 여부에 따라 view Hidden 결정
@@ -101,17 +101,17 @@ public class MarkerView: UIView {
             dataSource.titleLabelView?.isHidden = false
             dataSource.titleLabelView?.center = (self.superview?.center)!
         }
-        
+
         if isAudioContent {
             dataSource.audioContentView?.setAudio(audioUrl: audioURL!)
             dataSource.audioContentView?.isHidden = false
         }
-        
+
         if isVideoContent {
             dataSource.videoContentView?.setVideo(videoUrl: videoURL!)
             dataSource.videoContentView?.isHidden = false
         }
-        
+
         if isTextContent {
             dataSource.textContentView?.labelSet(title: textTitle, link: textLink, text: textContent)
             dataSource.textContentView?.frameSet(upYFloat: (self.superview?.frame.height)!*(2/3), downYFloat: (self.superview?.frame.height)!*(1/5))
@@ -131,4 +131,3 @@ extension MarkerView: UIGestureRecognizerDelegate {
         }
     }
 }
-

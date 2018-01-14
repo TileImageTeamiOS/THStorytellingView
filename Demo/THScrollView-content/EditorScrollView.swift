@@ -22,7 +22,7 @@ class EditorScrollView: UIScrollView {
     var linkText = UITextField()
     var textLabel = UILabel()
     var detailText = UITextView()
-    
+
     func set() {
         titleLabel.text = "Title"
         audioLabel.text = "Audio"

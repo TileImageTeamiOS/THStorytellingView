@@ -45,7 +45,6 @@ class ImageProcessingVC: UIViewController {
                 }
             }
         }
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,7 +56,7 @@ class ImageProcessingVC: UIViewController {
             }
         }
     }
-    
+
     @IBAction func imageShowButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "ShowScrollView", sender: nil)
     }
