@@ -75,7 +75,7 @@ public class AudioContentView: UIView {
 extension AudioContentView: AVAudioPlayerDelegate {
     public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         audioStatus = .finish
-        audioButton.setImage(#imageLiteral(resourceName: "replay"), for: .normal)
+        audioButton.setImage(#imageLiteral(resourceName: "audioPlay"), for: .normal)
     }
 }
 
