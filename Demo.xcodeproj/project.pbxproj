@@ -23,6 +23,7 @@
 		4EBE66E8200B58440091FA38 /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E1200B58440091FA38 /* TextContentView.swift */; };
 		4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E2200B58440091FA38 /* EditorScrollView.swift */; };
 		4EBE66EA200B58440091FA38 /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E3200B58440091FA38 /* AudioContentView.swift */; };
+		7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */; };
 		969EE020EFC1B0AE5FB4C614 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA760824E91B64E3E00480B /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		4EBE66E2200B58440091FA38 /* EditorScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
 		4EBE66E3200B58440091FA38 /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
 		50F14293CE24BA244426453A /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingVC.swift; sourceTree = "<group>"; };
 		8BB830D994E44811AB567785 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA760824E91B64E3E00480B /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 				4EBE66DC200B57A60091FA38 /* THScrollView-content */,
 				4EBE66C1200B47940091FA38 /* ViewController.swift */,
 				4EBE66C3200B47940091FA38 /* Main.storyboard */,
+				7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				4EBE66E7200B58440091FA38 /* MarkerView.swift in Sources */,
 				4EBE66E4200B58440091FA38 /* MarkerViewDataSoucrce.swift in Sources */,
 				4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */,
+				7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */,
 				4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */,
 				4EBE66E8200B58440091FA38 /* TextContentView.swift in Sources */,
 				4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */,
