@@ -13,10 +13,10 @@
 
 ## Requirements
 
-`THTiledImageView` is written in Swift 4, and compatible with iOS 9.0+
+`THStorytellingView` is written in Swift 4, and compatible with iOS 9.0+
 
 
 
 ## License
 
-`THTiledImageView` is released under the MIT license. [See LICENSE](https://github.com/TileImageTeamiOS/THStorytellingView/blob/master/LICENSE) for details.
+`THStorytellingView` is released under the MIT license. [See LICENSE](https://github.com/TileImageTeamiOS/THStorytellingView/blob/master/LICENSE) for details.
