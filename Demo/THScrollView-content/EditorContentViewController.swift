@@ -10,12 +10,12 @@ import UIKit
 import MediaPlayer
 
 class EditorContentViewController: UIViewController {
+    
     var editorScrollView = EditorScrollView()
     var imagePicker: UIImagePickerController!
     var audioPicker: MPMediaPickerController!
     var videoPath = NSURL()
     var audioPath = NSURL()
-    
     var x: Double = 0
     var y: Double = 0
     var zoom: Double = 1
@@ -30,24 +30,27 @@ class EditorContentViewController: UIViewController {
         self.editorScrollView.frame = self.view.frame
         self.editorScrollView.contentSize = CGSize(width:self.view.frame.width,height:1000)
         self.editorScrollView.backgroundColor = UIColor.white
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(editorBack))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(editorDone))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         self.view.addSubview(self.editorScrollView)
         editorScrollView.set()
         editorScrollView.isScrollEnabled = true
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(editorBack))
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(editorDone))
-        
         
         editorScrollView.audioSelectBtn.addTarget(self, action: #selector(self.chooseAudio), for: .touchUpInside)
         editorScrollView.videoSelectBtn.addTarget(self, action: #selector(self.chooseVideo), for: .touchUpInside)
         
         editorScrollView.detailText.delegate = self
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
             name: NSNotification.Name.UIKeyboardWillShow,
             object: nil
         )
+        self.hideKeyboardWhenTappedAround()
+        
     }
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
@@ -63,7 +66,7 @@ class EditorContentViewController: UIViewController {
         present(audioPicker, animated: true, completion: nil)
     }
     
-   @objc func chooseVideo() {
+    @objc func chooseVideo() {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -84,10 +87,9 @@ class EditorContentViewController: UIViewController {
         if (editorScrollView.linkText.text?.isEmpty)! && editorScrollView.detailText.text.isEmpty {
             isText = false
         }
-        
         let markerDict:[String: Any] = ["x":x,"y":y,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath, "audioURL":audioPath, "title":editorScrollView.titleText.text ?? "", "link":editorScrollView.linkText.text ?? "", "text":editorScrollView.detailText.text ?? "", "isText" : isText]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "makeMarker"), object: nil, userInfo: markerDict)
-
+        
         
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -124,8 +126,6 @@ extension EditorContentViewController: MPMediaPickerControllerDelegate {
     }
     
 }
-
-
 extension EditorContentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -152,3 +152,15 @@ extension EditorContentViewController:  UITextFieldDelegate {
         return true
     }
 }
+extension EditorContentViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
