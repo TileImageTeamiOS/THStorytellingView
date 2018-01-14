@@ -117,14 +117,19 @@ extension TextContentView: UIGestureRecognizerDelegate {
     }
     
     @objc func linkLabelTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        let parentVC = self.parentViewController
-        let webViewController = UIViewController()
-        
-        let webView = UIWebView(frame: webViewController.view.frame)
-        webViewController.view.addSubview(webView)
-        webView.loadRequest(URLRequest(url: URL(string: linkLable.text!)!))
-        
-        parentVC?.show(webViewController, sender: nil)
+        let url = URL(string: linkLable.text!)!
+
+        if UIApplication.shared.canOpenURL(url).hashValue == 1 {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            let alert = UIAlertController(title: "Invaild input URL", message: nil, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(ok)
+            
+            let parentVC = self.parentViewController
+            parentVC?.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
