@@ -17,6 +17,7 @@
 
 ## Pod
 THTiledImageView(https://github.com/TileImageTeamiOS/THTiledImageView.git)
+
 THScrollView-minimap(https://github.com/TileImageTeamiOS/THScrollView-minimap.git)
 
 ## Requirements
