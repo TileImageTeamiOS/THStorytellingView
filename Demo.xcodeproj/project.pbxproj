@@ -99,8 +99,8 @@
 				4EBE66DB200B56FB0091FA38 /* DataSource */,
 				4EBE66DC200B57A60091FA38 /* THScrollView-content */,
 				4EBE66C1200B47940091FA38 /* ViewController.swift */,
-				4EBE66C3200B47940091FA38 /* Main.storyboard */,
 				7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */,
+				4EBE66C3200B47940091FA38 /* Main.storyboard */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
