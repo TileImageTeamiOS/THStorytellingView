@@ -10,6 +10,9 @@
 
 ## Demo
 
+## Pod
+(https://github.com/TileImageTeamiOS/THTiledImageView.git)
+(https://github.com/TileImageTeamiOS/THScrollView-minimap.git)
 
 ## Requirements
 
