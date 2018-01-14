@@ -30,6 +30,9 @@ class ViewController: UIViewController {
     
     //THEditor set
     var centerPoint = UIView()
+    var isEditor = false
+    var isSelected = false
+    var markerIndex = 0
     
     // image info
     var imageSize = CGSize()
@@ -63,6 +66,9 @@ class ViewController: UIViewController {
         
         // set markerView
         setupMarkerView()
+        
+        // set editor
+        setupEditor()
     }
     
     func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
@@ -135,6 +141,66 @@ class ViewController: UIViewController {
         
         self.view.addSubview(centerPoint)
         centerPoint.isHidden = true
+        
+        // editor button 설정
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backBtn))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Editor", style: .plain, target: self, action: #selector(editorBtn))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+    }
+    
+    // editor button 구현
+    @objc func editorBtn() {
+        if isSelected == false {
+            if isEditor == false {
+                self.navigationItem.rightBarButtonItem?.title = "Done"
+                tileImageScrollView.layer.borderWidth = 4
+                tileImageScrollView.layer.borderColor = UIColor.red.cgColor
+                centerPoint.isHidden = isEditor
+                isEditor = true
+            } else {
+                self.navigationItem.rightBarButtonItem?.title = "Editor"
+                tileImageScrollView.layer.borderWidth = 0
+                centerPoint.isHidden = isEditor
+                isEditor = false
+                
+                let editorViewController = EditorContentViewController()
+                
+                editorViewController.zoom = Double(tileImageScrollView.zoomScale)
+                editorViewController.x = Double(tileImageScrollView.contentOffset.x/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.width/tileImageScrollView.zoomScale/2)
+                editorViewController.y = Double(tileImageScrollView.contentOffset.y/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.height/tileImageScrollView.zoomScale/2)
+                
+                self.show(editorViewController, sender: nil)
+            }
+        } else {
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            isSelected = false
+            for marker in markerArray {
+                if marker.num == markerIndex {
+                    let index = markerArray.index(of: marker)
+                    markerArray.remove(at: index!)
+                }
+            }
+            backBtn()
+        }
+    }
+    
+    // back button 구현
+    @objc func backBtn() {
+        isEditor = false
+        isSelected = false
+        tileImageScrollView.layer.borderWidth = 0
+        centerPoint.isHidden = true
+        
+        self.navigationItem.rightBarButtonItem?.title = "Editor"
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+        
+        markerDataSource?.reset()
+        
+        for marker in markerArray {
+            marker.isSelected = false
+            marker.isHidden = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
