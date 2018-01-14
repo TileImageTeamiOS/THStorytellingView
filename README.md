@@ -7,6 +7,7 @@
 [![Swift 4.0](https://img.shields.io/badge/Swift-4.0-%23FB613C.svg)](https://developer.apple.com/swift/)
 
 ## Feature
+
 - [x] You can make your own storytelling image by adding marker on the speicific position of the image.
 - [x] Marker can include its own title, video, audio, link, or text.
 - [x] Marker can be added or removed by user. 
@@ -16,9 +17,19 @@
 
 
 ## Pod
+
+We use the THTiledImageView, THScrollView-minimap for THStorytellingView.
+
 THTiledImageView(https://github.com/TileImageTeamiOS/THTiledImageView.git)
 
 THScrollView-minimap(https://github.com/TileImageTeamiOS/THScrollView-minimap.git)
+
+To start `THStorytellingView`, set the dependency for the project:
+
+```
+pod setup
+pod install
+```
 
 ## Requirements
 
