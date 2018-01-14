@@ -1,6 +1,6 @@
 PODS:
   - THScrollView-minimap (0.2.0)
-  - THTiledImageView (0.2.1)
+  - THTiledImageView (0.2.2)
 
 DEPENDENCIES:
   - THScrollView-minimap
@@ -8,7 +8,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   THScrollView-minimap: 7bcb71e9d818e772eac34838596f507963787229
-  THTiledImageView: 8d2f94de8016c621de441721f43ab0501e9a1182
+  THTiledImageView: cb5450b582c5d330c25dfa1b89933f7df7680630
 
 PODFILE CHECKSUM: 9323980013bfd0726b8792fc269793814f071c5c
 

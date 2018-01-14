@@ -13,6 +13,7 @@ class ImageProcessingVC: UIViewController {
     @IBOutlet weak var ImageShowButton: UIButton!
     @IBOutlet weak var ImageSizeLabel: UILabel!
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     // image cut info
     var imageName = "shopping"
     var imageExtension = "jpg"
@@ -23,6 +24,7 @@ class ImageProcessingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        activityIndicator.startAnimating()
         var count = 0
         UIImage.saveTileOf(size: tiles, name: imageName, withExtension: imageExtension) { isSuccess in
 
@@ -32,10 +34,14 @@ class ImageProcessingVC: UIViewController {
                     count += 1
                     if count == self.tiles.count {
                         self.ImageShowButton.isHidden = false
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.isHidden = true
                     }
                 } else {
                     self.ImageSizeLabel.text = "Image File Already Exists"
                     self.ImageShowButton.isHidden = false
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
                 }
             }
         }

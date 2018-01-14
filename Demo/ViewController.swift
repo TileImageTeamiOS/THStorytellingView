@@ -269,7 +269,7 @@ extension ViewController: THTiledImageScrollViewDelegate {
     }
     
     func didZoom(scrollView: THTiledImageScrollView) {
-        markerArray.map { marker in
+        markerArray.forEach { marker in
             markerDataSource?.framSet(markerView: marker)
         }
     }
