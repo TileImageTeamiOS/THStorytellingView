@@ -54,6 +54,12 @@ class ViewController: UIViewController {
         
         // set minimap
         setupMinimap(thumbnailImage: thumbnailImage)
+        
+        // set contentView
+        setupContentView()
+        
+        // set markerView
+        setupMarkerView()
     }
     
     func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
@@ -76,7 +82,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     func setupMinimap(thumbnailImage: UIImage) {
         minimapDataSource = MyMinimapDataSource(scrollView: tileImageScrollView, thumbnailImage: thumbnailImage , originImageSize: imageSize)
         
@@ -84,6 +89,39 @@ class ViewController: UIViewController {
         minimapDataSource?.borderWidth = 2.0
         minimapDataSource?.downSizeRatio = 5 * thumbnailImage.size.width / view.frame.width
         minimapView.set(dataSource: minimapDataSource!)
+    }
+    
+    func setupContentView() {
+        // title contentView 설정
+        titleLabel.center = self.view.center
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.white
+        titleLabel.font.withSize(20)
+        self.view.addSubview(titleLabel)
+        
+        // audio contentView 설정
+        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+        self.view.addSubview(audioContentView)
+        
+        // video contentview 설정
+        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        self.view.addSubview(videoContentView)
+        
+        // text contentView 설정
+        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
+        self.view.addSubview(textContentView)
+    }
+    
+    func setupMarkerView() {
+        var ratio:Double = 200
+        if imageSize.height > imageSize.width {
+            ratio = Double(imageSize.height) / 40
+        } else {
+            ratio = Double(imageSize.width) / 40
+        }
+        
+        // markerData Source 설정
+        markerDataSource = MarkerViewDataSource(scrollView: tileImageScrollView, imageSize: imageSize, ratioByImage: ratio, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
     }
 
     override func didReceiveMemoryWarning() {
