@@ -23,6 +23,8 @@ enum VideoStatus: Int {
 public class VideoContentView: UIView {
     private var videoTapGestureRecognizer = UITapGestureRecognizer()
     private var videoPanGestureRecognizer = UIPanGestureRecognizer()
+    
+    fileprivate var playerObserver: Any?
     var player =  AVPlayer()
     var playStatus = PlayStatus.pause
     var videoStatus = VideoStatus.show
@@ -40,7 +42,7 @@ public class VideoContentView: UIView {
         self.backgroundColor = UIColor.black
         
         // 전체화면 버튼 세팅
-        fullscreenButton.frame = CGRect(x: self.frame.width - 30, y: self.frame.height - 30, width: 20, height: 20)
+        fullscreenButton.frame = CGRect(x: self.frame.width - 30, y: self.frame.height - 30, width: 30, height: 30)
         fullscreenButton.layer.cornerRadius = 3
         fullscreenButton.layer.opacity = 0.5
         fullscreenButton.setImage(UIImage(named: "enlarge.png"), for: .normal)
@@ -58,7 +60,14 @@ public class VideoContentView: UIView {
     
     func setVideo(url: URL) {
         player =  AVPlayer(url: url)
-        player.allowsExternalPlayback = false
+        let resetPlayer = {
+            self.player.seek(to: kCMTimeZero)
+            self.pauseVideo()
+        }
+        playerObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: nil) { notification in
+            resetPlayer()
+        }
+
         
         let layer: AVPlayerLayer = AVPlayerLayer(player: player)
         layer.frame = self.bounds
@@ -71,6 +80,7 @@ public class VideoContentView: UIView {
     func playVideo() {
         playStatus = .play
         videoButton.setImage(UIImage(named: "pauseBtn.png"), for: .normal)
+        
         player.play()
         
         hideStatus()
