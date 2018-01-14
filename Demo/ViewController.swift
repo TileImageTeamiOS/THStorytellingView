@@ -28,6 +28,9 @@ class ViewController: UIViewController {
     
      var markerArray = [MarkerView]()
     
+    //THEditor set
+    var centerPoint = UIView()
+    
     // image info
     var imageSize = CGSize()
     var imageName = "shopping"
@@ -122,6 +125,16 @@ class ViewController: UIViewController {
         
         // markerData Source 설정
         markerDataSource = MarkerViewDataSource(scrollView: tileImageScrollView, imageSize: imageSize, ratioByImage: ratio, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
+    }
+    
+    func setupEditor() {
+        // edit center point 설정
+        centerPoint.frame = CGRect(x: tileImageScrollView.frame.width/2 - 5 , y: tileImageScrollView.frame.height/2 + (self.navigationController?.navigationBar.frame.height)! - 15, width: CGFloat(10), height: CGFloat(10))
+        centerPoint.backgroundColor = UIColor.red
+        centerPoint.layer.cornerRadius = 5
+        
+        self.view.addSubview(centerPoint)
+        centerPoint.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
