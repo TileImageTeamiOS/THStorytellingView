@@ -15,6 +15,14 @@
 		4EBE66D4200B4EA50091FA38 /* MyTileImageViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */; };
 		4EBE66D7200B500E0091FA38 /* shoppingSmall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */; };
 		4EBE66D8200B500E0091FA38 /* shopping.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66D6200B500E0091FA38 /* shopping.jpg */; };
+		4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */; };
+		4EBE66E4200B58440091FA38 /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */; };
+		4EBE66E5200B58440091FA38 /* VideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DE200B58430091FA38 /* VideoContentView.swift */; };
+		4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */; };
+		4EBE66E7200B58440091FA38 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E0200B58430091FA38 /* MarkerView.swift */; };
+		4EBE66E8200B58440091FA38 /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E1200B58440091FA38 /* TextContentView.swift */; };
+		4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E2200B58440091FA38 /* EditorScrollView.swift */; };
+		4EBE66EA200B58440091FA38 /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E3200B58440091FA38 /* AudioContentView.swift */; };
 		969EE020EFC1B0AE5FB4C614 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA760824E91B64E3E00480B /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +37,14 @@
 		4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTileImageViewDataSource.swift; sourceTree = "<group>"; };
 		4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shoppingSmall.jpg; sourceTree = "<group>"; };
 		4EBE66D6200B500E0091FA38 /* shopping.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shopping.jpg; sourceTree = "<group>"; };
+		4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMinimapDataSource.swift; sourceTree = "<group>"; };
+		4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
+		4EBE66DE200B58430091FA38 /* VideoContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContentView.swift; sourceTree = "<group>"; };
+		4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
+		4EBE66E0200B58430091FA38 /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
+		4EBE66E1200B58440091FA38 /* TextContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentView.swift; sourceTree = "<group>"; };
+		4EBE66E2200B58440091FA38 /* EditorScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
+		4EBE66E3200B58440091FA38 /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
 		50F14293CE24BA244426453A /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		8BB830D994E44811AB567785 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA760824E91B64E3E00480B /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,9 +94,10 @@
 			children = (
 				4EBE66D2200B4BDC0091FA38 /* Resources */,
 				4EBE66D1200B4BC90091FA38 /* SupportingFiles */,
+				4EBE66DB200B56FB0091FA38 /* DataSource */,
+				4EBE66DC200B57A60091FA38 /* THScrollView-content */,
 				4EBE66C1200B47940091FA38 /* ViewController.swift */,
 				4EBE66C3200B47940091FA38 /* Main.storyboard */,
-				4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -103,6 +120,29 @@
 				4EBE66C6200B47940091FA38 /* Assets.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		4EBE66DB200B56FB0091FA38 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */,
+				4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
+		4EBE66DC200B57A60091FA38 /* THScrollView-content */ = {
+			isa = PBXGroup;
+			children = (
+				4EBE66E3200B58440091FA38 /* AudioContentView.swift */,
+				4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */,
+				4EBE66E2200B58440091FA38 /* EditorScrollView.swift */,
+				4EBE66E0200B58430091FA38 /* MarkerView.swift */,
+				4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */,
+				4EBE66E1200B58440091FA38 /* TextContentView.swift */,
+				4EBE66DE200B58430091FA38 /* VideoContentView.swift */,
+			);
+			path = "THScrollView-content";
 			sourceTree = "<group>";
 		};
 		5A02DE5C306F84A1A2620ACF /* Frameworks */ = {
@@ -246,8 +286,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EBE66E7200B58440091FA38 /* MarkerView.swift in Sources */,
+				4EBE66E4200B58440091FA38 /* MarkerViewDataSoucrce.swift in Sources */,
+				4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */,
 				4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */,
+				4EBE66E8200B58440091FA38 /* TextContentView.swift in Sources */,
+				4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */,
+				4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */,
+				4EBE66EA200B58440091FA38 /* AudioContentView.swift in Sources */,
 				4EBE66D4200B4EA50091FA38 /* MyTileImageViewDataSource.swift in Sources */,
+				4EBE66E5200B58440091FA38 /* VideoContentView.swift in Sources */,
 				4EBE66C0200B47940091FA38 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

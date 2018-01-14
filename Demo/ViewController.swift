@@ -8,10 +8,25 @@
 
 import UIKit
 import THTiledImageView
+import THScrollView_minimap
 
 class ViewController: UIViewController {
+    //THTileImgeView set
     @IBOutlet weak var tileImageScrollView: THTiledImageScrollView!
     var tileImageDataSource: THTiledImageViewDataSource?
+    
+    //THScrollView minimap set
+    @IBOutlet weak var minimapView: THMinimapView!
+    var minimapDataSource: THMinimapDataSource?
+    
+    //THScrollView content set
+    var audioContentView = AudioContentView()
+    var videoContentView = VideoContentView()
+    var textContentView = TextContentView()
+    var titleLabel = UILabel()
+    var markerDataSource: MarkerViewDataSource!
+    
+     var markerArray = [MarkerView]()
     
     // image info
     var imageSize = CGSize()
@@ -22,7 +37,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // image cut info
         let tiles: [CGSize] = [CGSize(width: 2048, height: 2048), CGSize(width: 1024, height: 1024),
                                CGSize(width: 512, height: 512), CGSize(width: 256, height: 256),
@@ -33,12 +47,16 @@ class ViewController: UIViewController {
         let image = UIImage(named: imageName + "." + imageExtension)
         imageSize = CGSize(width: (image?.size.width)!, height: (image?.size.height)!)
         let thumbnailImageURL = Bundle.main.url(forResource: thumbnailName , withExtension: thumbnailExtension)!
+        let thumbnailImage = UIImage(contentsOfFile: thumbnailImageURL.path)!
         
         // set tile image
-        setupExample(imageSize: imageSize, tileSize: tiles, imageURL: thumbnailImageURL)
+        setupTileImage(imageSize: imageSize, tileSize: tiles, imageURL: thumbnailImageURL)
+        
+        // set minimap
+        setupMinimap(thumbnailImage: thumbnailImage)
     }
     
-    func setupExample(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
+    func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
         tileImageDataSource = MyTileImageViewDataSource(imageSize: imageSize, tileSize: tileSize, imageURL: imageURL)
         
         tileImageDataSource?.delegate = self
@@ -57,6 +75,16 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    
+    func setupMinimap(thumbnailImage: UIImage) {
+        minimapDataSource = MyMinimapDataSource(scrollView: tileImageScrollView, thumbnailImage: thumbnailImage , originImageSize: imageSize)
+        
+        minimapDataSource?.borderColor = UIColor.red
+        minimapDataSource?.borderWidth = 2.0
+        minimapDataSource?.downSizeRatio = 5 * thumbnailImage.size.width / view.frame.width
+        minimapView.set(dataSource: minimapDataSource!)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -67,6 +95,7 @@ class ViewController: UIViewController {
 extension ViewController: THTiledImageScrollViewDelegate {
     
     func didScroll(scrollView: THTiledImageScrollView) {
+        minimapDataSource?.resizeMinimapView(minimapView: minimapView)
     }
     
     func didZoom(scrollView: THTiledImageScrollView) {
