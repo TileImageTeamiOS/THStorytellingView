@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,12 +18,72 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="o9c-3Z-0I0"/>
+                        <segue destination="dCe-uf-284" kind="relationship" relationship="rootViewController" id="QLb-Dx-dun"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZz-Iu-5nY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1234" y="358"/>
+            <point key="canvasLocation" x="-2450" y="776"/>
+        </scene>
+        <!--Image ProcessingVC-->
+        <scene sceneID="xfI-Oz-ehh">
+            <objects>
+                <viewController id="dCe-uf-284" customClass="ImageProcessingVC" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nLZ-B1-Btz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Cutting Processing..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzp-ek-CBV">
+                                <rect key="frame" x="82" y="283.5" width="210.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnE-QL-xX2">
+                                <rect key="frame" x="151.5" y="383.5" width="72" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="s7B-Gr-wJ3"/>
+                                </constraints>
+                                <state key="normal" title="See Image"/>
+                                <connections>
+                                    <action selector="ImageShowButtonTapped:" destination="dCe-uf-284" eventType="touchUpInside" id="gfd-ru-Jdk"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ImageSize 2048.0 Cutting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rD5-0j-O87">
+                                <rect key="frame" x="16" y="344" width="343" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AIF-9C-tbA">
+                                <rect key="frame" x="177" y="314" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rD5-0j-O87" firstAttribute="top" secondItem="AIF-9C-tbA" secondAttribute="bottom" constant="10" id="5df-Ua-bOM"/>
+                            <constraint firstItem="AIF-9C-tbA" firstAttribute="top" secondItem="zzp-ek-CBV" secondAttribute="bottom" constant="10" id="BrS-m2-Fph"/>
+                            <constraint firstItem="AIF-9C-tbA" firstAttribute="centerX" secondItem="nLZ-B1-Btz" secondAttribute="centerX" id="EGb-cB-wXX"/>
+                            <constraint firstItem="AnE-QL-xX2" firstAttribute="centerX" secondItem="nLZ-B1-Btz" secondAttribute="centerX" id="GtB-fl-wED"/>
+                            <constraint firstItem="rD5-0j-O87" firstAttribute="leading" secondItem="5aq-Ya-bqY" secondAttribute="leading" constant="16" id="IPx-Hj-3DF"/>
+                            <constraint firstItem="zzp-ek-CBV" firstAttribute="centerY" secondItem="nLZ-B1-Btz" secondAttribute="centerY" constant="-40" id="Sk5-dW-XH1"/>
+                            <constraint firstItem="AnE-QL-xX2" firstAttribute="top" secondItem="rD5-0j-O87" secondAttribute="bottom" constant="20" id="T1N-HS-76S"/>
+                            <constraint firstItem="5aq-Ya-bqY" firstAttribute="trailing" secondItem="rD5-0j-O87" secondAttribute="trailing" constant="16" id="bcR-4w-DQ9"/>
+                            <constraint firstItem="zzp-ek-CBV" firstAttribute="centerX" secondItem="nLZ-B1-Btz" secondAttribute="centerX" id="dh2-ca-pHv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5aq-Ya-bqY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="WnM-zD-SBJ"/>
+                    <connections>
+                        <outlet property="ImageShowButton" destination="AnE-QL-xX2" id="hmn-a4-hGx"/>
+                        <outlet property="ImageSizeLabel" destination="rD5-0j-O87" id="YAE-b2-7Tf"/>
+                        <outlet property="activityIndicator" destination="AIF-9C-tbA" id="U9E-ml-DrR"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowScrollView" id="a0w-rP-JNZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbM-Vr-H8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1641" y="776"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -65,6 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-742" y="776"/>
         </scene>
     </scenes>
 </document>

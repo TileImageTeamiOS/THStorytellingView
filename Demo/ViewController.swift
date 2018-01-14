@@ -36,28 +36,30 @@ class ViewController: UIViewController {
     
     // image info
     var imageSize = CGSize()
-    var imageName = "shopping"
-    var imageExtension = "jpg"
+
     var thumbnailName = "shoppingSmall"
     var thumbnailExtension = "jpg"
-    
+
+    var imageName: String = ""
+    var imageExtension: String = ""
+    var tiles: [CGSize] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // image cut info
-        let tiles: [CGSize] = [CGSize(width: 2048, height: 2048), CGSize(width: 1024, height: 1024),
-                               CGSize(width: 512, height: 512), CGSize(width: 256, height: 256),
-                               CGSize(width: 128, height: 128)]
-        UIImage.saveTileOf(size: tiles, name: imageName, withExtension: imageExtension)
-        
-        // image 설정
-        let image = UIImage(named: imageName + "." + imageExtension)
-        imageSize = CGSize(width: (image?.size.width)!, height: (image?.size.height)!)
+
         let thumbnailImageURL = Bundle.main.url(forResource: thumbnailName , withExtension: thumbnailExtension)!
         let thumbnailImage = UIImage(contentsOfFile: thumbnailImageURL.path)!
-        
-        // set tile image
-        setupTileImage(imageSize: imageSize, tileSize: tiles, imageURL: thumbnailImageURL)
-        
+
+
+        // image 설정
+        if let image = UIImage(named: imageName + "." + imageExtension) {
+            imageSize = CGSize(width: image.size.width, height: image.size.height)
+            // set tile image
+            setupTileImage(imageSize: imageSize, tileSize: tiles, imageURL: thumbnailImageURL)
+        }
+
+
+
         // set minimap
         setupMinimap(thumbnailImage: thumbnailImage)
         
@@ -267,7 +269,7 @@ extension ViewController: THTiledImageScrollViewDelegate {
     }
     
     func didZoom(scrollView: THTiledImageScrollView) {
-        markerArray.map { marker in
+        markerArray.forEach { marker in
             markerDataSource?.framSet(markerView: marker)
         }
     }
