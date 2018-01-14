@@ -69,6 +69,9 @@ class ViewController: UIViewController {
         
         // set editor
         setupEditor()
+        
+        // set marker control
+        setupMarkerControl()
     }
     
     func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
@@ -202,6 +205,54 @@ class ViewController: UIViewController {
             marker.isHidden = false
         }
     }
+    
+    func setupMarkerControl() {
+        // editor에서 marker 추가
+        NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
+        
+        // marker 선택시 hidden 이벤트
+        NotificationCenter.default.addObserver(self, selector: #selector(showMarker), name: NSNotification.Name(rawValue: "showMarker"), object: nil)
+        
+        // marker index 지정
+        UserDefaults.standard.set(0, forKey: "integerKeyName")
+    }
+    
+    @objc func addMarker(_ notification: NSNotification){
+        let marker = MarkerView()
+        let x = notification.userInfo?["x"]
+        let y = notification.userInfo?["y"]
+        let zoom =  notification.userInfo?["zoomScale"]
+        let isAudioContent = notification.userInfo?["isAudioContent"]
+        let isVideoContent = notification.userInfo?["isVideoContent"]
+        let videoURL = notification.userInfo?["videoURL"]
+        let audioURL = notification.userInfo?["audioURL"]
+        let markerTitle = notification.userInfo?["title"]
+        let link = notification.userInfo?["link"]
+        let text = notification.userInfo?["text"]
+        let isText = notification.userInfo?["isText"]
+        
+        marker.set(dataSource: markerDataSource, x: CGFloat(x as! Double), y: CGFloat(y as! Double), zoomScale: CGFloat(zoom as! Double), isTitleContent: true, isAudioContent: isAudioContent as! Bool, isVideoContent: isVideoContent as! Bool, isTextContent: isText as! Bool)
+        
+        marker.setAudioContent(url: audioURL as! URL)
+        marker.setVideoContent(url: videoURL as! URL)
+        marker.setTitle(title: markerTitle as! String)
+        marker.setText(title: "", link: link as! String, content: text as! String)
+        marker.setMarkerImage(markerImage: #imageLiteral(resourceName: "page"))
+        
+        markerArray.append(marker)
+        markerDataSource.framSet(markerView: marker)
+        markerDataSource.reset()
+    }
+    
+    @objc func showMarker(_ notification: NSNotification){
+        self.navigationItem.rightBarButtonItem?.title = "Delete Marker"
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+        isSelected = true
+        markerIndex = notification.userInfo?["num"] as! Int
+        for marker in markerArray {
+            marker.isHidden = true
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -216,6 +267,9 @@ extension ViewController: THTiledImageScrollViewDelegate {
     }
     
     func didZoom(scrollView: THTiledImageScrollView) {
+        markerArray.map { marker in
+            markerDataSource?.framSet(markerView: marker)
+        }
     }
 }
 
