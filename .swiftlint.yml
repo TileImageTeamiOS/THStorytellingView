@@ -7,7 +7,7 @@ opt_in_rules: # some rules are only opt-in
   # Find all the available rules by running:
   # swiftlint rules
 included: # paths to include during linting. `--path` is ignored if present.
-  - Source
+  - Demo
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
@@ -21,7 +21,7 @@ force_try:
   severity: warning # explicitly
 # rules that have both warning and error levels, can set just the warning level
 # implicitly
-line_length: 110
+line_length: 260
 # they can set both implicitly with an array
 type_body_length:
   - 300 # warning

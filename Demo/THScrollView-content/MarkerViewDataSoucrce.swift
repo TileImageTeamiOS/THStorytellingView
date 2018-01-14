@@ -119,9 +119,9 @@ extension MarkerViewDataSource {
         let scaleLength = ratioLength/scrollView.zoomScale
         
         if scrollView.zoomScale > 1 {
-            markerView.frame = CGRect(x: markerView.x * scrollView.zoomScale - scaleLength/2, y: markerView.y * scrollView.zoomScale - scaleLength/2, width: scaleLength, height: scaleLength)
+            markerView.frame = CGRect(x: markerView.xFloat * scrollView.zoomScale - scaleLength/2, y: markerView.yFloat * scrollView.zoomScale - scaleLength/2, width: scaleLength, height: scaleLength)
         } else {
-            markerView.frame = CGRect(x: markerView.x * scrollView.zoomScale - ratioLength/2, y: markerView.y * scrollView.zoomScale - ratioLength/2, width: ratioLength, height: ratioLength)
+            markerView.frame = CGRect(x: markerView.xFloat * scrollView.zoomScale - ratioLength/2, y: markerView.yFloat * scrollView.zoomScale - ratioLength/2, width: ratioLength, height: ratioLength)
         }
         
         if markerView.imageView != nil {

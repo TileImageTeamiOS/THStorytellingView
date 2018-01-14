@@ -34,9 +34,9 @@ public class AudioContentView: UIView {
         self.addSubview(audioCurrentTime)
     }
     
-    func setAudio(url: URL) {
+    func setAudio(audioUrl: URL) {
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
             audioPlayer?.delegate = self
             guard let sound = audioPlayer else { return }
             sound.prepareToPlay()

@@ -16,8 +16,8 @@ class EditorContentViewController: UIViewController {
     var audioPicker: MPMediaPickerController!
     var videoPath = NSURL()
     var audioPath = NSURL()
-    var x: Double = 0
-    var y: Double = 0
+    var positionX: Double = 0
+    var positionY: Double = 0
     var zoom: Double = 1
     var isAudio = false
     var isVideo = false
@@ -81,17 +81,17 @@ class EditorContentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @objc func editorBack() {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     @objc func editorDone() {
         if (editorScrollView.linkText.text?.isEmpty)! && editorScrollView.detailText.text.isEmpty {
             isText = false
         }
-        let markerDict:[String: Any] = ["x":x,"y":y,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath, "audioURL":audioPath, "title":editorScrollView.titleText.text ?? "", "link":editorScrollView.linkText.text ?? "", "text":editorScrollView.detailText.text ?? "", "isText" : isText]
+        let markerDict:[String: Any] = ["xFloat":positionX,"yFloat":positionY,"zoomScale":zoom,"isAudioContent":isAudio,"isVideoContent":isVideo,"videoURL":videoPath, "audioURL":audioPath, "title":editorScrollView.titleText.text ?? "", "link":editorScrollView.linkText.text ?? "", "text":editorScrollView.detailText.text ?? "", "isText" : isText]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "makeMarker"), object: nil, userInfo: markerDict)
         
         
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 extension EditorContentViewController: UITextViewDelegate{

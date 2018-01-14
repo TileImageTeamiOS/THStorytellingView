@@ -56,8 +56,8 @@ public class VideoContentView: UIView {
         videoButton.addTarget(self, action: #selector(pressVideoButton(_ :)), for: .touchUpInside)
     }
     
-    func setVideo(url: URL) {
-        player =  AVPlayer(url: url)
+    func setVideo(videoUrl: URL) {
+        player =  AVPlayer(url: videoUrl)
         player.allowsExternalPlayback = false
         
         let layer: AVPlayerLayer = AVPlayerLayer(player: player)

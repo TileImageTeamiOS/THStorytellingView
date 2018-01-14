@@ -24,8 +24,8 @@ public class TextContentView: UIView {
     var linkLable = UILabel()
     var textLabel = UILabel()
     
-    var upY = CGFloat()
-    var downY = CGFloat()
+    var upYFloat = CGFloat()
+    var downYFloat = CGFloat()
     
     var contentStatus: ContentStatus = .hide
     
@@ -56,9 +56,9 @@ public class TextContentView: UIView {
         self.addSubview(contentScrollView)
     }
     
-    public func frameSet(upY: CGFloat, downY: CGFloat) {
-        self.upY = upY
-        self.downY = downY
+    public func frameSet(upYFloat: CGFloat, downYFloat: CGFloat) {
+        self.upYFloat = upYFloat
+        self.downYFloat = downYFloat
     }
     
     public func labelSet(title: String?, link: String?, text: String?) {
@@ -101,7 +101,7 @@ extension TextContentView: UIGestureRecognizerDelegate {
             contentStatus = .show
             
             UIView.animate(withDuration: 0.5, animations: {
-                self.frame = CGRect(x: 0, y: (self.superview?.frame.height)! - self.upY, width: (self.superview?.frame.width)!, height: self.upY)
+                self.frame = CGRect(x: 0, y: (self.superview?.frame.height)! - self.upYFloat, width: (self.superview?.frame.width)!, height: self.upYFloat)
                 self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 self.upImageView.transform = self.upImageView.transform.rotated(by: CGFloat(Double.pi))
             })
@@ -109,7 +109,7 @@ extension TextContentView: UIGestureRecognizerDelegate {
             contentStatus = .hide
             
             UIView.animate(withDuration: 0.5, animations: {
-                self.frame = CGRect(x: 0, y: (self.superview?.frame.height)! - self.downY, width: (self.superview?.frame.width)!, height: self.downY)
+                self.frame = CGRect(x: 0, y: (self.superview?.frame.height)! - self.downYFloat, width: (self.superview?.frame.width)!, height: self.downYFloat)
                 self.contentScrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 self.upImageView.transform = self.upImageView.transform.rotated(by: CGFloat(Double.pi))
             })

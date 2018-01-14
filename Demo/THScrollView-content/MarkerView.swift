@@ -10,21 +10,21 @@ import UIKit
 
 public class MarkerView: UIView {
     fileprivate var dataSource: MarkerViewDataSource!
-    var x = CGFloat()
-    var y = CGFloat()
+    var xFloat = CGFloat()
+    var yFloat = CGFloat()
     var zoomScale = CGFloat()
     var imageView: UIImageView?
-    var num = 0
-    
+    var markIndex = 0
+
     private var markerTapGestureRecognizer = UITapGestureRecognizer()
-    
+
     private var isTitleContent = false
     private var isAudioContent = false
     private var isVideoContent = false
     private var isTextContent = false
-    
+
     private var destinationRect = CGRect()
-    
+
     var videoURL: URL?
     var audioURL: URL?
     var title: String?
@@ -33,19 +33,19 @@ public class MarkerView: UIView {
     var textContent: String?
     var isSelected = false
     
-    public func set(dataSource: MarkerViewDataSource, x: CGFloat, y: CGFloat, zoomScale: CGFloat, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, isTextContent: Bool) {
+    public func set(dataSource: MarkerViewDataSource, xFloat: CGFloat, yFloat: CGFloat, zoomScale: CGFloat, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, isTextContent: Bool) {
         // marker 위치 설정후 scrollview에 추가
         self.dataSource = dataSource
-        self.x = x
-        self.y = y
+        self.xFloat = xFloat
+        self.yFloat = yFloat
         self.zoomScale = zoomScale
         dataSource.scrollView.addSubview(self)
-        
+
         // zoom 했을떄 위치 설정
         destinationRect.size.width = dataSource.scrollView.frame.width/zoomScale
         destinationRect.size.height = dataSource.scrollView.frame.height/zoomScale
-        destinationRect.origin.x = x - destinationRect.size.width/2
-        destinationRect.origin.y = y - destinationRect.size.height/2
+        destinationRect.origin.x = xFloat - destinationRect.size.width/2
+        destinationRect.origin.y = yFloat - destinationRect.size.height/2
         
         // marker tap 설정
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
@@ -58,8 +58,8 @@ public class MarkerView: UIView {
         self.isVideoContent = isVideoContent
         self.isTextContent = isTextContent
         
-        num = UserDefaults.standard.integer(forKey: "integerKeyName")
-        UserDefaults.standard.set(num+1, forKey: "integerKeyName")
+        markIndex = UserDefaults.standard.integer(forKey: "integerKeyName")
+        UserDefaults.standard.set(markIndex+1, forKey: "integerKeyName")
     }
     
     // marker image 설정
@@ -71,13 +71,13 @@ public class MarkerView: UIView {
     }
     
     // 비디오 url 설정
-    func setVideoContent(url: URL) {
-        videoURL = url
+    func setVideoContent(videoUrl: URL) {
+        videoURL = videoUrl
     }
     
     // 오디오 url 설정
-    func setAudioContent(url: URL) {
-        audioURL = url
+    func setAudioContent(audioUrl: URL) {
+        audioURL = audioUrl
     }
     
     // title string 설정
@@ -103,18 +103,18 @@ public class MarkerView: UIView {
         }
         
         if isAudioContent {
-            dataSource.audioContentView?.setAudio(url: audioURL!)
+            dataSource.audioContentView?.setAudio(audioUrl: audioURL!)
             dataSource.audioContentView?.isHidden = false
         }
         
         if isVideoContent {
-            dataSource.videoContentView?.setVideo(url: videoURL!)
+            dataSource.videoContentView?.setVideo(videoUrl: videoURL!)
             dataSource.videoContentView?.isHidden = false
         }
         
         if isTextContent {
             dataSource.textContentView?.labelSet(title: textTitle, link: textLink, text: textContent)
-            dataSource.textContentView?.frameSet(upY: (self.superview?.frame.height)!*(2/3), downY: (self.superview?.frame.height)!*(1/5))
+            dataSource.textContentView?.frameSet(upYFloat: (self.superview?.frame.height)!*(2/3), downYFloat: (self.superview?.frame.height)!*(1/5))
             dataSource.textContentView?.isHidden = false
         }
     }
@@ -126,7 +126,7 @@ extension MarkerView: UIGestureRecognizerDelegate {
             dataSource.zoom(destinationRect: destinationRect)
             markerContentSet()
             isSelected = true
-            let number:[String: Any] = ["num":num]
+            let number:[String: Any] = ["markIndex":markIndex]
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showMarker"), object: nil, userInfo: number)
         }
     }

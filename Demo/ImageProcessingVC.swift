@@ -10,8 +10,8 @@ import UIKit
 
 class ImageProcessingVC: UIViewController {
 
-    @IBOutlet weak var ImageShowButton: UIButton!
-    @IBOutlet weak var ImageSizeLabel: UILabel!
+    @IBOutlet weak var imageShowButton: UIButton!
+    @IBOutlet weak var imageSizeLabel: UILabel!
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     // image cut info
@@ -30,16 +30,16 @@ class ImageProcessingVC: UIViewController {
 
             DispatchQueue.main.async {
                 if isSuccess {
-                    self.ImageSizeLabel.text = "ImageSize \(self.tiles[count].width)\n Cutting has been finished."
+                    self.imageSizeLabel.text = "ImageSize \(self.tiles[count].width)\n Cutting has been finished."
                     count += 1
                     if count == self.tiles.count {
-                        self.ImageShowButton.isHidden = false
+                        self.imageShowButton.isHidden = false
                         self.activityIndicator.stopAnimating()
                         self.activityIndicator.isHidden = true
                     }
                 } else {
-                    self.ImageSizeLabel.text = "Image File Already Exists"
-                    self.ImageShowButton.isHidden = false
+                    self.imageSizeLabel.text = "Image File Already Exists"
+                    self.imageShowButton.isHidden = false
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
                 }
@@ -57,8 +57,8 @@ class ImageProcessingVC: UIViewController {
             }
         }
     }
-
-    @IBAction func ImageShowButtonTapped(_ sender: UIButton) {
+    
+    @IBAction func imageShowButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "ShowScrollView", sender: nil)
     }
 
