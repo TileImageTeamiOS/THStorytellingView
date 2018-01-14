@@ -81,7 +81,7 @@ class EditorContentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @objc func editorBack() {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     @objc func editorDone() {
         if (editorScrollView.linkText.text?.isEmpty)! && editorScrollView.detailText.text.isEmpty {
@@ -91,7 +91,7 @@ class EditorContentViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "makeMarker"), object: nil, userInfo: markerDict)
         
         
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 extension EditorContentViewController: UITextViewDelegate{
