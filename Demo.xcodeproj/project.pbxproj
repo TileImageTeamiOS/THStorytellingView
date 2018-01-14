@@ -134,12 +134,12 @@
 		4EBE66DC200B57A60091FA38 /* THScrollView-content */ = {
 			isa = PBXGroup;
 			children = (
-				4EBE66E3200B58440091FA38 /* AudioContentView.swift */,
 				4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */,
 				4EBE66E2200B58440091FA38 /* EditorScrollView.swift */,
 				4EBE66E0200B58430091FA38 /* MarkerView.swift */,
 				4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */,
 				4EBE66E1200B58440091FA38 /* TextContentView.swift */,
+				4EBE66E3200B58440091FA38 /* AudioContentView.swift */,
 				4EBE66DE200B58430091FA38 /* VideoContentView.swift */,
 			);
 			path = "THScrollView-content";

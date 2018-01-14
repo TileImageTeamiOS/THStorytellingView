@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         self.view.addSubview(videoContentView)
         
         // text contentView 설정
-        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - 80, width: self.view.frame.width, height: 100)
+        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
         self.view.addSubview(textContentView)
     }
     
