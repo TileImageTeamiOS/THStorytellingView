@@ -27,6 +27,14 @@
 ### Text And Link
 ![textAndLink](images/textAndLink.gif)
 
+### Add Marker
+
+![addMarker](images/addMarker.gif)
+
+### Remove Marker
+
+![removeMarker](images/removeMarker.gif)
+
 ## Pod
 
 We use the [THTiledImageView](https://github.com/TileImageTeamiOS/THTiledImageView.git), [THScrollView-minimap](https://github.com/TileImageTeamiOS/THScrollView-minimap.git) for `THStorytellingView`.
