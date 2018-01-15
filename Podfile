@@ -7,5 +7,6 @@ target 'Demo' do
 
   # Pods for Demo
 	pod "THTiledImageView"
+	pod 'SwiftLint'
 	pod "THScrollView-minimap"
 end
