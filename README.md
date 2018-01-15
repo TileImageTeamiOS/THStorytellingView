@@ -30,7 +30,7 @@
 
 ### Add Marker
 
-![addMarker](images/addMarker.gif)
+![addMarker](images/markerAdd.gif)
 
 ### Remove Marker
 
