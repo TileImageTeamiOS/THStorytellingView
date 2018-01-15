@@ -46,7 +46,7 @@
                                 </constraints>
                                 <state key="normal" title="See Image"/>
                                 <connections>
-                                    <action selector="ImageShowButtonTapped:" destination="dCe-uf-284" eventType="touchUpInside" id="gfd-ru-Jdk"/>
+                                    <action selector="imageShowButtonTapped:" destination="dCe-uf-284" eventType="touchUpInside" id="mNp-X1-lsT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ImageSize 2048.0 Cutting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rD5-0j-O87">
@@ -75,9 +75,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="WnM-zD-SBJ"/>
                     <connections>
-                        <outlet property="ImageShowButton" destination="AnE-QL-xX2" id="hmn-a4-hGx"/>
-                        <outlet property="ImageSizeLabel" destination="rD5-0j-O87" id="YAE-b2-7Tf"/>
                         <outlet property="activityIndicator" destination="AIF-9C-tbA" id="U9E-ml-DrR"/>
+                        <outlet property="imageShowButton" destination="AnE-QL-xX2" id="UhN-v1-EoH"/>
+                        <outlet property="imageSizeLabel" destination="rD5-0j-O87" id="hps-Kg-ERV"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="ShowScrollView" id="a0w-rP-JNZ"/>
                     </connections>
                 </viewController>

@@ -18,25 +18,25 @@ public class AudioContentView: UIView {
     var audioButton = UIButton()
     var audioCurrentTime = UILabel()
     var audioStatus = AudioStatus.stop
-    
+
     var audioUrl: URL?
     var audioPlayer: AVAudioPlayer?
     var audioIntever = TimeInterval()
-    
+
     func setAudioPlayer() {
         audioButton.frame.origin = CGPoint.zero
         audioButton.frame.size = self.frame.size
         audioButton.setImage(UIImage(named: "audioPlay.png"), for: .normal)
         audioButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         audioButton.addTarget(self, action: #selector(pressAudioButton(_:)), for: .touchUpInside)
-        
+
         self.addSubview(audioButton)
         self.addSubview(audioCurrentTime)
     }
-    
-    func setAudio(url: URL) {
+
+    func setAudio(audioUrl: URL) {
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
             audioPlayer?.delegate = self
             guard let sound = audioPlayer else { return }
             sound.prepareToPlay()
@@ -44,7 +44,7 @@ public class AudioContentView: UIView {
             print(error)
         }
     }
-    
+
     func playAudio() {
         audioStatus = .play
         audioButton.setImage(UIImage(named: "audioPause.png"), for: .normal)
@@ -54,15 +54,15 @@ public class AudioContentView: UIView {
             audioPlayer?.play(atTime: audioIntever)
         }
     }
-    
+
     func stopAudio() {
         audioButton.setImage(UIImage(named: "audioPlay.png"), for: .normal)
         audioStatus = .stop
         audioPlayer?.stop()
     }
-    
+
     @objc func pressAudioButton(_ sender: UIButton!) {
-        if audioStatus == .stop{
+        if audioStatus == .stop {
             playAudio()
         } else if audioStatus == .play {
             stopAudio()
@@ -78,4 +78,3 @@ extension AudioContentView: AVAudioPlayerDelegate {
         audioButton.setImage(#imageLiteral(resourceName: "audioPlay"), for: .normal)
     }
 }
-
