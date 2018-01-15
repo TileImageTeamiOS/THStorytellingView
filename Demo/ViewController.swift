@@ -26,7 +26,8 @@ class ViewController: UIViewController {
     var titleLabel = UILabel()
     var markerDataSource: MarkerViewDataSource!
 
-     var markerArray = [MarkerView]()
+    var markerArray = [MarkerView]()
+    var overwatch = OverwatchEx()
 
     //THEditor set
     var centerPoint = UIView()
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
     // image info
     var imageSize = CGSize()
 
-    var thumbnailName = "overwatchthubnail"
+    var thumbnailName = "overwatchthumbnail"
     var thumbnailExtension = "jpg"
 
     var imageName: String = ""
@@ -71,6 +72,14 @@ class ViewController: UIViewController {
 
         // set marker control
         setupMarkerControl()
+        
+        // set example marker
+        overwatch.setOverwatchEx(dataSource: markerDataSource)
+        addMarker(marker: overwatch.tracer)
+        addMarker(marker: overwatch.mercy)
+        addMarker(marker: overwatch.reinhardt)
+        addMarker(marker: overwatch.hanzo)
+        addMarker(marker: overwatch.bastion)
     }
 
     func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
@@ -205,7 +214,7 @@ class ViewController: UIViewController {
 
     func setupMarkerControl() {
         // editor에서 marker 추가
-        NotificationCenter.default.addObserver(self, selector: #selector(addMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(makeMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
 
         // marker 선택시 hidden 이벤트
         NotificationCenter.default.addObserver(self, selector: #selector(showMarker), name: NSNotification.Name(rawValue: "showMarker"), object: nil)
@@ -214,7 +223,7 @@ class ViewController: UIViewController {
         UserDefaults.standard.set(0, forKey: "integerKeyName")
     }
 
-    @objc func addMarker(_ notification: NSNotification) {
+    @objc func makeMarker(_ notification: NSNotification) {
         let marker = MarkerView()
         if let x = notification.userInfo?["xFloat"] as? Double,
             let y = notification.userInfo?["yFloat"] as? Double,
@@ -230,7 +239,9 @@ class ViewController: UIViewController {
 
             let contentDict:[String: Bool] = ["isTitleContent": true, "isAudioContent":isAudioContent,
                                               "isVideoContent": isVideoContent, "isTextContent": isTextContent]
-
+            print("x:" , x)
+            print("y:" , y)
+            print("zoom:" , zoom)
             marker.set(dataSource: markerDataSource, origin: CGPoint(x: x, y: y), zoomScale: CGFloat(zoom), contentDict: contentDict)
 
             marker.setAudioContent(audioUrl: audioURL)
@@ -238,6 +249,9 @@ class ViewController: UIViewController {
             marker.setTitle(title: markerTitle)
             marker.setText(title: "", link: link, content: text)
         }
+        addMarker(marker: marker)
+    }
+    func addMarker(marker: MarkerView){
         marker.setMarkerImage(markerImage: #imageLiteral(resourceName: "page"))
         markerArray.append(marker)
         markerDataSource.framSet(markerView: marker)

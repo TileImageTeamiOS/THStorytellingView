@@ -15,7 +15,7 @@ class ImageProcessingVC: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     // image cut info
-    var imageName = "overWatch"
+    var imageName = "overwatch"
     var imageExtension = "jpg"
     let tiles: [CGSize] = [CGSize(width: 2048, height: 2048), CGSize(width: 1024, height: 1024),
                            CGSize(width: 512, height: 512), CGSize(width: 256, height: 256),

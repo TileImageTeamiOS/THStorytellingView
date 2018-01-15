@@ -79,7 +79,7 @@ public class TextContentView: UIView {
         linkLable.sizeToFit()
         linkLable.isUserInteractionEnabled = true
 
-        textLabel.frame.size = CGSize(width: self.frame.width, height: 10)
+        textLabel.frame.size = CGSize(width: (self.frame.width - 20), height: 10)
         textLabel.frame.origin = CGPoint(x: 10, y: linkLable.frame.origin.y + linkLable.frame.height + 10)
         textLabel.text = text
         textLabel.numberOfLines = 100
