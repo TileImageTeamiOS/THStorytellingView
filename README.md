@@ -26,7 +26,6 @@
 
 ### Text And Link
 ![textAndLink](images/textAndLink.gif)
-<<<<<<< HEAD
 
 ### Add Marker
 
