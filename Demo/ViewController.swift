@@ -239,9 +239,7 @@ class ViewController: UIViewController {
 
             let contentDict:[String: Bool] = ["isTitleContent": true, "isAudioContent":isAudioContent,
                                               "isVideoContent": isVideoContent, "isTextContent": isTextContent]
-            print("x:" , x)
-            print("y:" , y)
-            print("zoom:" , zoom)
+
             marker.set(dataSource: markerDataSource, origin: CGPoint(x: x, y: y), zoomScale: CGFloat(zoom), contentDict: contentDict)
 
             marker.setAudioContent(audioUrl: audioURL)
