@@ -23,6 +23,8 @@
 		4EBE66E8200B58440091FA38 /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E1200B58440091FA38 /* TextContentView.swift */; };
 		4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E2200B58440091FA38 /* EditorScrollView.swift */; };
 		4EBE66EA200B58440091FA38 /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E3200B58440091FA38 /* AudioContentView.swift */; };
+		4EBE66EF200C77F40091FA38 /* overWatch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66ED200C77F40091FA38 /* overWatch.jpg */; };
+		4EBE66F0200C77F40091FA38 /* overwatchthubnail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66EE200C77F40091FA38 /* overwatchthubnail.jpg */; };
 		7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */; };
 		969EE020EFC1B0AE5FB4C614 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA760824E91B64E3E00480B /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,8 @@
 		4EBE66E1200B58440091FA38 /* TextContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentView.swift; sourceTree = "<group>"; };
 		4EBE66E2200B58440091FA38 /* EditorScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
 		4EBE66E3200B58440091FA38 /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
+		4EBE66ED200C77F40091FA38 /* overWatch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = overWatch.jpg; sourceTree = "<group>"; };
+		4EBE66EE200C77F40091FA38 /* overwatchthubnail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = overwatchthubnail.jpg; sourceTree = "<group>"; };
 		50F14293CE24BA244426453A /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingVC.swift; sourceTree = "<group>"; };
 		8BB830D994E44811AB567785 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 		4EBE66D2200B4BDC0091FA38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4EBE66ED200C77F40091FA38 /* overWatch.jpg */,
+				4EBE66EE200C77F40091FA38 /* overwatchthubnail.jpg */,
 				4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */,
 				4EBE66D6200B500E0091FA38 /* shopping.jpg */,
 				4EBE66C6200B47940091FA38 /* Assets.xcassets */,
@@ -220,6 +226,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBE66D8200B500E0091FA38 /* shopping.jpg in Resources */,
+				4EBE66F0200C77F40091FA38 /* overwatchthubnail.jpg in Resources */,
+				4EBE66EF200C77F40091FA38 /* overWatch.jpg in Resources */,
 				4EBE66CA200B47940091FA38 /* LaunchScreen.storyboard in Resources */,
 				4EBE66C7200B47940091FA38 /* Assets.xcassets in Resources */,
 				4EBE66C5200B47940091FA38 /* Main.storyboard in Resources */,

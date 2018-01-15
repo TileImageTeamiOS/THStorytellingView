@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     // image info
     var imageSize = CGSize()
 
-    var thumbnailName = "shoppingSmall"
+    var thumbnailName = "overwatchthubnail"
     var thumbnailExtension = "jpg"
 
     var imageName: String = ""
@@ -216,9 +216,9 @@ class ViewController: UIViewController {
 
     @objc func addMarker(_ notification: NSNotification) {
         let marker = MarkerView()
-        if let x = notification.userInfo?["xFloat"] as? CGFloat,
-            let y = notification.userInfo?["yFloat"] as? CGFloat,
-            let zoom =  notification.userInfo?["zoomScale"] as? CGFloat,
+        if let x = notification.userInfo?["xFloat"] as? Double,
+            let y = notification.userInfo?["yFloat"] as? Double,
+            let zoom =  notification.userInfo?["zoomScale"] as? Double,
             let isAudioContent = notification.userInfo?["isAudioContent"] as? Bool,
             let isVideoContent = notification.userInfo?["isVideoContent"] as? Bool,
             let isTextContent = notification.userInfo?["isText"] as? Bool,
@@ -231,7 +231,7 @@ class ViewController: UIViewController {
             let contentDict:[String: Bool] = ["isTitleContent": true, "isAudioContent":isAudioContent,
                                               "isVideoContent": isVideoContent, "isTextContent": isTextContent]
 
-            marker.set(dataSource: markerDataSource, origin: CGPoint(x: x, y: y), zoomScale: zoom, contentDict: contentDict)
+            marker.set(dataSource: markerDataSource, origin: CGPoint(x: x, y: y), zoomScale: CGFloat(zoom), contentDict: contentDict)
 
             marker.setAudioContent(audioUrl: audioURL)
             marker.setVideoContent(videoUrl: videoURL)
