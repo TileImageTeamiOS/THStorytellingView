@@ -15,6 +15,17 @@
 
 ## Demo
 
+### Pick Marker
+![markerPick](images/markerPick.gif)
+
+### Video
+![video](images/video.gif)
+
+### Audio
+![audio](images/audio.gif)
+
+### Text And Link
+![textAndLink](images/textAndLink.gif)
 
 ## Pod
 
