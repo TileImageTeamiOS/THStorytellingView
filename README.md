@@ -26,6 +26,7 @@
 
 ### Text And Link
 ![textAndLink](images/textAndLink.gif)
+<<<<<<< HEAD
 
 ### Add Marker
 
@@ -34,6 +35,7 @@
 ### Remove Marker
 
 ![removeMarker](images/removeMarker.gif)
+
 
 ## Pod
 
