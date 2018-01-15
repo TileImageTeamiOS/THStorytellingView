@@ -10,7 +10,7 @@ import UIKit
 import THTiledImageView
 
 class MyTileImageViewDataSource: THTiledImageViewDataSource {
-    var delegate: THTiledImageScrollViewDelegate?
+    weak var delegate: THTiledImageScrollViewDelegate?
 
     var minTileLevel: Int
     var maxTileLevel: Int

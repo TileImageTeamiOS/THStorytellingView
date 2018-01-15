@@ -33,19 +33,20 @@ public class MarkerView: UIView {
     var textContent: String?
     var isSelected = false
 
-    public func set(dataSource: MarkerViewDataSource, xFloat: CGFloat, yFloat: CGFloat, zoomScale: CGFloat, isTitleContent: Bool, isAudioContent: Bool, isVideoContent: Bool, isTextContent: Bool) {
+    public func set(dataSource: MarkerViewDataSource, origin: CGPoint, zoomScale: CGFloat, contentDict: [String: Bool]) {
         // marker 위치 설정후 scrollview에 추가
+
         self.dataSource = dataSource
-        self.xFloat = xFloat
-        self.yFloat = yFloat
+        self.xFloat = origin.x
+        self.yFloat = origin.y
         self.zoomScale = zoomScale
         dataSource.scrollView.addSubview(self)
 
         // zoom 했을떄 위치 설정
         destinationRect.size.width = dataSource.scrollView.frame.width/zoomScale
         destinationRect.size.height = dataSource.scrollView.frame.height/zoomScale
-        destinationRect.origin.x = xFloat - destinationRect.size.width/2
-        destinationRect.origin.y = yFloat - destinationRect.size.height/2
+        destinationRect.origin.x = origin.x - destinationRect.size.width/2
+        destinationRect.origin.y = origin.y - destinationRect.size.height/2
 
         // marker tap 설정
         markerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(markerViewTap(_:)))
@@ -53,10 +54,18 @@ public class MarkerView: UIView {
         self.addGestureRecognizer(markerTapGestureRecognizer)
 
         // content 존재 여부 설정
-        self.isTitleContent = isTitleContent
-        self.isAudioContent = isAudioContent
-        self.isVideoContent = isVideoContent
-        self.isTextContent = isTextContent
+        if let title = contentDict["isTitleContent"] {
+            self.isTitleContent = title
+        }
+        if let audio = contentDict["isAudioContent"] {
+            self.isAudioContent = audio
+        }
+        if let video = contentDict["isVideoContent"] {
+            self.isVideoContent = video
+        }
+        if let text = contentDict["isTextContent"] {
+            self.isTextContent = text
+        }
 
         markIndex = UserDefaults.standard.integer(forKey: "integerKeyName")
         UserDefaults.standard.set(markIndex+1, forKey: "integerKeyName")

@@ -216,9 +216,9 @@ class ViewController: UIViewController {
 
     @objc func addMarker(_ notification: NSNotification) {
         let marker = MarkerView()
-        if let x = notification.userInfo?["xFloat"] as? Double,
-            let y = notification.userInfo?["yFloat"] as? Double,
-            let zoom =  notification.userInfo?["zoomScale"] as? Double,
+        if let x = notification.userInfo?["xFloat"] as? CGFloat,
+            let y = notification.userInfo?["yFloat"] as? CGFloat,
+            let zoom =  notification.userInfo?["zoomScale"] as? CGFloat,
             let isAudioContent = notification.userInfo?["isAudioContent"] as? Bool,
             let isVideoContent = notification.userInfo?["isVideoContent"] as? Bool,
             let isTextContent = notification.userInfo?["isText"] as? Bool,
@@ -227,7 +227,11 @@ class ViewController: UIViewController {
             let markerTitle = notification.userInfo?["title"] as? String,
             let link = notification.userInfo?["link"] as? String,
             let text = notification.userInfo?["text"] as? String {
-            marker.set(dataSource: markerDataSource, xFloat: CGFloat(x), yFloat: CGFloat(y), zoomScale: CGFloat(zoom), isTitleContent: true, isAudioContent: isAudioContent, isVideoContent: isVideoContent, isTextContent: isTextContent)
+
+            let contentDict:[String: Bool] = ["isTitleContent": true, "isAudioContent":isAudioContent,
+                                              "isVideoContent": isVideoContent, "isTextContent": isTextContent]
+
+            marker.set(dataSource: markerDataSource, origin: CGPoint(x: x, y: y), zoomScale: zoom, contentDict: contentDict)
 
             marker.setAudioContent(audioUrl: audioURL)
             marker.setVideoContent(videoUrl: videoURL)
