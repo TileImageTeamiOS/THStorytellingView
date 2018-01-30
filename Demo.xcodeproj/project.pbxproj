@@ -12,6 +12,9 @@
 		041F9A5D200C9C840047A223 /* reinhardt.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 041F9A5B200C9C830047A223 /* reinhardt.mp4 */; };
 		041F9A60200C9E8C0047A223 /* mercy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 041F9A5E200C9E8B0047A223 /* mercy.mp3 */; };
 		041F9A61200C9E8C0047A223 /* hanzo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 041F9A5F200C9E8B0047A223 /* hanzo.mp3 */; };
+		04274ADD20205B2E0084DED0 /* MarkerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04274ADC20205B2E0084DED0 /* MarkerDataSource.swift */; };
+		04274ADF202062AB0084DED0 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04274ADE202062AB0084DED0 /* Marker.swift */; };
+		04274AE5202069CF0084DED0 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04274AE4202069CF0084DED0 /* MarkerView.swift */; };
 		4EBE66C0200B47940091FA38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66BF200B47940091FA38 /* AppDelegate.swift */; };
 		4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66C1200B47940091FA38 /* ViewController.swift */; };
 		4EBE66C5200B47940091FA38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C3200B47940091FA38 /* Main.storyboard */; };
@@ -21,10 +24,8 @@
 		4EBE66D7200B500E0091FA38 /* shoppingSmall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */; };
 		4EBE66D8200B500E0091FA38 /* shopping.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66D6200B500E0091FA38 /* shopping.jpg */; };
 		4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */; };
-		4EBE66E4200B58440091FA38 /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */; };
 		4EBE66E5200B58440091FA38 /* VideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DE200B58430091FA38 /* VideoContentView.swift */; };
 		4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */; };
-		4EBE66E7200B58440091FA38 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E0200B58430091FA38 /* MarkerView.swift */; };
 		4EBE66E8200B58440091FA38 /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E1200B58440091FA38 /* TextContentView.swift */; };
 		4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E2200B58440091FA38 /* EditorScrollView.swift */; };
 		4EBE66EA200B58440091FA38 /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E3200B58440091FA38 /* AudioContentView.swift */; };
@@ -40,6 +41,9 @@
 		041F9A5B200C9C830047A223 /* reinhardt.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = reinhardt.mp4; sourceTree = "<group>"; };
 		041F9A5E200C9E8B0047A223 /* mercy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mercy.mp3; sourceTree = "<group>"; };
 		041F9A5F200C9E8B0047A223 /* hanzo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hanzo.mp3; sourceTree = "<group>"; };
+		04274ADC20205B2E0084DED0 /* MarkerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerDataSource.swift; sourceTree = "<group>"; };
+		04274ADE202062AB0084DED0 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		04274AE4202069CF0084DED0 /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		4EBE66BC200B47940091FA38 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBE66BF200B47940091FA38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EBE66C1200B47940091FA38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,10 +55,8 @@
 		4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shoppingSmall.jpg; sourceTree = "<group>"; };
 		4EBE66D6200B500E0091FA38 /* shopping.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shopping.jpg; sourceTree = "<group>"; };
 		4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMinimapDataSource.swift; sourceTree = "<group>"; };
-		4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
 		4EBE66DE200B58430091FA38 /* VideoContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContentView.swift; sourceTree = "<group>"; };
 		4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
-		4EBE66E0200B58430091FA38 /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		4EBE66E1200B58440091FA38 /* TextContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentView.swift; sourceTree = "<group>"; };
 		4EBE66E2200B58440091FA38 /* EditorScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
 		4EBE66E3200B58440091FA38 /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
@@ -160,8 +162,9 @@
 			children = (
 				4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */,
 				4EBE66E2200B58440091FA38 /* EditorScrollView.swift */,
-				4EBE66E0200B58430091FA38 /* MarkerView.swift */,
-				4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */,
+				04274ADC20205B2E0084DED0 /* MarkerDataSource.swift */,
+				04274ADE202062AB0084DED0 /* Marker.swift */,
+				04274AE4202069CF0084DED0 /* MarkerView.swift */,
 				4EBE66E1200B58440091FA38 /* TextContentView.swift */,
 				4EBE66E3200B58440091FA38 /* AudioContentView.swift */,
 				4EBE66DE200B58430091FA38 /* VideoContentView.swift */,
@@ -330,8 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EBE66E7200B58440091FA38 /* MarkerView.swift in Sources */,
-				4EBE66E4200B58440091FA38 /* MarkerViewDataSoucrce.swift in Sources */,
+				04274ADD20205B2E0084DED0 /* MarkerDataSource.swift in Sources */,
 				041F9A55200C8FCD0047A223 /* OverwatchEx.swift in Sources */,
 				4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */,
 				7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */,
@@ -343,6 +345,8 @@
 				4EBE66D4200B4EA50091FA38 /* MyTileImageViewDataSource.swift in Sources */,
 				4EBE66E5200B58440091FA38 /* VideoContentView.swift in Sources */,
 				4EBE66C0200B47940091FA38 /* AppDelegate.swift in Sources */,
+				04274AE5202069CF0084DED0 /* MarkerView.swift in Sources */,
+				04274ADF202062AB0084DED0 /* Marker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
