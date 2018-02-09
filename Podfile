@@ -9,4 +9,7 @@ target 'Demo' do
 	pod "THTiledImageView"
 	pod 'SwiftLint'
 	pod "THScrollView-minimap"
+	pod ‘THMarkerView’
+	pod 'Firebase/Core'
+	pod 'Firebase/Database'
 end

@@ -9,6 +9,7 @@
 import UIKit
 import THTiledImageView
 import THScrollView_minimap
+import THMarkerView
 
 class ViewController: UIViewController {
     //THTileImgeView set
@@ -20,34 +21,28 @@ class ViewController: UIViewController {
     var minimapDataSource: THMinimapDataSource?
 
     //THScrollView content set
-    var audioContentView = AudioContentView()
-    var videoContentView = VideoContentView()
-    var textContentView = TextContentView()
-    var titleLabel = UILabel()
-    var markerDataSource: MarkerViewDataSource!
-
-    var markerArray = [MarkerView]()
-    var overwatch = OverwatchEx()
+    var contentArray: [THContent] = []
+    var contentViewController = THContentViewController()
+    var markerArray = [THMarkerView]()
 
     //THEditor set
     var centerPoint = UIView()
     var isEditor = false
     var isSelected = false
-    var markerIndex = 0
 
     // image info
     var imageSize = CGSize()
-
     var thumbnailName = "overwatchthumbnail"
     var thumbnailExtension = "jpg"
-
     var imageName: String = ""
     var imageExtension: String = ""
     var tiles: [CGSize] = []
+    
+    // json parsing
+    var dataModel = DataModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let thumbnailImageURL = Bundle.main.url(forResource: thumbnailName , withExtension: thumbnailExtension)!
         let thumbnailImage = UIImage(contentsOfFile: thumbnailImageURL.path)!
 
@@ -61,27 +56,31 @@ class ViewController: UIViewController {
         // set minimap
         setupMinimap(thumbnailImage: thumbnailImage)
 
-        // set contentView
-        setupContentView()
-
-        // set markerView
-        setupMarkerView()
-
         // set editor
         setupEditor()
-
-        // set marker control
-        setupMarkerControl()
         
-        // set example marker
-        overwatch.setOverwatchEx(dataSource: markerDataSource)
-        addMarker(marker: overwatch.tracer)
-        addMarker(marker: overwatch.mercy)
-        addMarker(marker: overwatch.reinhardt)
-        addMarker(marker: overwatch.hanzo)
-        addMarker(marker: overwatch.bastion)
+        // content dict 설정
+        contentViewController.dataSource = self
+        contentViewController.set(parentView: self.view)
+        
+        // show Marker
+        showMarker()
     }
 
+    func showMarker() {
+        markerArray.removeAll()
+        dataModel.getMarkers(scrollView: tileImageScrollView) {_ in
+            for i in 0..<self.dataModel.markerArray.count {
+                self.dataModel.markerArray[i].delegate = self
+                self.markerArray.append(self.dataModel.markerArray[i])
+                self.contentArray.append(self.dataModel.contentArray[i])
+            }
+            for marker in self.markerArray {
+                marker.framSet()
+            }
+        }
+    }
+    
     func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
         tileImageDataSource = MyTileImageViewDataSource(imageSize: imageSize, tileSize: tileSize, imageURL: imageURL)
 
@@ -111,39 +110,6 @@ class ViewController: UIViewController {
         minimapView.set(dataSource: minimapDataSource!)
     }
 
-    func setupContentView() {
-        // title contentView 설정
-        titleLabel.center = self.view.center
-        titleLabel.textAlignment = .center
-        titleLabel.textColor = UIColor.white
-        titleLabel.font.withSize(20)
-        self.view.addSubview(titleLabel)
-
-        // audio contentView 설정
-        audioContentView.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
-        self.view.addSubview(audioContentView)
-
-        // video contentview 설정
-        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        self.view.addSubview(videoContentView)
-
-        // text contentView 설정
-        textContentView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
-        self.view.addSubview(textContentView)
-    }
-
-    func setupMarkerView() {
-        var ratio:Double = 200
-        if imageSize.height > imageSize.width {
-            ratio = Double(imageSize.height) / 40
-        } else {
-            ratio = Double(imageSize.width) / 40
-        }
-
-        // markerData Source 설정
-        markerDataSource = MarkerViewDataSource(scrollView: tileImageScrollView, imageSize: imageSize, ratioByImage: ratio, titleLabelView: titleLabel, audioContentView: audioContentView, videoContentView: videoContentView, textContentView: textContentView)
-    }
-
     func setupEditor() {
         // edit center point 설정
         centerPoint.frame = CGRect(x: tileImageScrollView.frame.width/2 - 5 , y: tileImageScrollView.frame.height/2 + (self.navigationController?.navigationBar.frame.height)! - 15, width: CGFloat(10), height: CGFloat(10))
@@ -162,112 +128,48 @@ class ViewController: UIViewController {
 
     // editor button 구현
     @objc func editorBtn() {
-        if isSelected == false {
-            if isEditor == false {
-                self.navigationItem.rightBarButtonItem?.title = "Done"
-                tileImageScrollView.layer.borderWidth = 4
-                tileImageScrollView.layer.borderColor = UIColor.red.cgColor
-                centerPoint.isHidden = isEditor
-                isEditor = true
-            } else {
-                self.navigationItem.rightBarButtonItem?.title = "Editor"
-                tileImageScrollView.layer.borderWidth = 0
-                centerPoint.isHidden = isEditor
-                isEditor = false
-
-                let editorViewController = EditorContentViewController()
-
-                editorViewController.zoom = Double(tileImageScrollView.zoomScale)
-                editorViewController.positionX = Double(tileImageScrollView.contentOffset.x/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.width/tileImageScrollView.zoomScale/2)
-                editorViewController.positionY = Double(tileImageScrollView.contentOffset.y/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.height/tileImageScrollView.zoomScale/2)
-
-                self.show(editorViewController, sender: nil)
-            }
+        if isEditor == false {
+            self.navigationItem.rightBarButtonItem?.title = "Done"
+            tileImageScrollView.layer.borderWidth = 4
+            tileImageScrollView.layer.borderColor = UIColor.red.cgColor
+            centerPoint.isHidden = isEditor
+            isEditor = true
+            
         } else {
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            isSelected = false
-            for marker in markerArray where marker.markIndex == markerIndex {
-                let index = markerArray.index(of: marker)
-                markerArray.remove(at: index!)
-            }
-            backBtn()
+            self.navigationItem.rightBarButtonItem?.title = "Editor"
+            tileImageScrollView.layer.borderWidth = 0
+            centerPoint.isHidden = isEditor
+            isEditor = false
+            
+            let editorViewController = EditorContentViewController()
+            
+            editorViewController.zoom = tileImageScrollView.zoomScale
+            editorViewController.positionX = tileImageScrollView.contentOffset.x/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.width/tileImageScrollView.zoomScale/2
+            editorViewController.positionY = tileImageScrollView.contentOffset.y/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.height/tileImageScrollView.zoomScale/2
+            
+            self.show(editorViewController, sender: nil)
         }
     }
 
-    // back button 구현
-    @objc func backBtn() {
+    func back() {
         isEditor = false
-        isSelected = false
         tileImageScrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
-
         self.navigationItem.rightBarButtonItem?.title = "Editor"
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-
-        markerDataSource?.reset()
-
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        self.navigationItem.rightBarButtonItem?.title = "Editor"
         for marker in markerArray {
-            marker.isSelected = false
             marker.isHidden = false
         }
+        contentViewController.dismiss()
     }
-
-    func setupMarkerControl() {
-        // editor에서 marker 추가
-        NotificationCenter.default.addObserver(self, selector: #selector(makeMarker), name: NSNotification.Name(rawValue: "makeMarker"), object: nil)
-
-        // marker 선택시 hidden 이벤트
-        NotificationCenter.default.addObserver(self, selector: #selector(showMarker), name: NSNotification.Name(rawValue: "showMarker"), object: nil)
-
-        // marker index 지정
-        UserDefaults.standard.set(0, forKey: "integerKeyName")
-    }
-
-    @objc func makeMarker(_ notification: NSNotification) {
-        let marker = MarkerView()
-        if let x = notification.userInfo?["xFloat"] as? Double,
-            let y = notification.userInfo?["yFloat"] as? Double,
-            let zoom =  notification.userInfo?["zoomScale"] as? Double,
-            let isAudioContent = notification.userInfo?["isAudioContent"] as? Bool,
-            let isVideoContent = notification.userInfo?["isVideoContent"] as? Bool,
-            let isTextContent = notification.userInfo?["isText"] as? Bool,
-            let videoURL = notification.userInfo?["videoURL"] as? URL,
-            let audioURL = notification.userInfo?["audioURL"] as? URL,
-            let markerTitle = notification.userInfo?["title"] as? String,
-            let link = notification.userInfo?["link"] as? String,
-            let text = notification.userInfo?["text"] as? String {
-
-            let contentDict:[String: Bool] = ["isTitleContent": true, "isAudioContent":isAudioContent,
-                                              "isVideoContent": isVideoContent, "isTextContent": isTextContent]
-
-            marker.set(dataSource: markerDataSource, origin: CGPoint(x: x, y: y), zoomScale: CGFloat(zoom), contentDict: contentDict)
-
-            marker.setAudioContent(audioUrl: audioURL)
-            marker.setVideoContent(videoUrl: videoURL)
-            marker.setTitle(title: markerTitle)
-            marker.setText(title: "", link: link, content: text)
-        }
-        addMarker(marker: marker)
-    }
-    func addMarker(marker: MarkerView){
-        marker.setMarkerImage(markerImage: #imageLiteral(resourceName: "page"))
-        markerArray.append(marker)
-        markerDataSource.framSet(markerView: marker)
-        markerDataSource.reset()
-    }
-
-    @objc func showMarker(_ notification: NSNotification) {
-        self.navigationItem.rightBarButtonItem?.title = "Delete Marker"
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
-        isSelected = true
-
-        if let num = notification.userInfo?["markIndex"] as? Int {
-            markerIndex = num
-        }
-
-        for marker in markerArray {
-            marker.isHidden = true
-        }
+    
+    // back button 구현
+    @objc func backBtn() {
+        back()
+        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+            self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -282,8 +184,32 @@ extension ViewController: THTiledImageScrollViewDelegate {
     }
 
     func didZoom(scrollView: THTiledImageScrollView) {
-        markerArray.forEach { marker in
-            markerDataSource?.framSet(markerView: marker)
+        for marker in markerArray {
+            marker.framSet()
         }
+    }
+}
+extension ViewController: THMarkerViewDelegate {
+    func tapEvent(marker: THMarkerView) {
+        for marker in markerArray {
+            marker.isHidden = true
+        }
+        contentViewController.show(content: contentArray[marker.index])
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.title = ""
+    }
+}
+
+extension ViewController: THContentViewControllerDataSource {
+    func setContentView(_ contentController: THContentViewController) -> [THContentView] {
+        let videoContentView = THVideoContentView()
+        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        videoContentView.setContentView()
+        
+        return [videoContentView]
+    }
+    
+    func setContentKey(_ contentController: THContentViewController) -> [String] {
+        return ["videoContent"]
     }
 }
