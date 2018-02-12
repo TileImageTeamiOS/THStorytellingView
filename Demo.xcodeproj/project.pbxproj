@@ -69,8 +69,8 @@
 		044D7810202D5E0F00FF8918 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
-				4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */,
 				4EBE66E2200B58440091FA38 /* EditorScrollView.swift */,
+				4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */,
 			);
 			name = Editor;
 			sourceTree = "<group>";

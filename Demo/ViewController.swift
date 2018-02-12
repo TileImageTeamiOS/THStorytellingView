@@ -29,6 +29,8 @@ class ViewController: UIViewController {
     var centerPoint = UIView()
     var isEditor = false
     var isSelected = false
+    var markerID = ""
+    var selectedMarker = 0
 
     // image info
     var imageSize = CGSize()
@@ -63,13 +65,15 @@ class ViewController: UIViewController {
         contentViewController.dataSource = self
         contentViewController.set(parentView: self.view)
         
-        // show Marker
-        showMarker()
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        showMarker()
+        back()
+        self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+    }
     func showMarker() {
-        markerArray.removeAll()
         dataModel.getMarkers(scrollView: tileImageScrollView) {_ in
+            self.markerArray.removeAll()
             for i in 0..<self.dataModel.markerArray.count {
                 self.dataModel.markerArray[i].delegate = self
                 self.markerArray.append(self.dataModel.markerArray[i])
@@ -80,7 +84,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
         tileImageDataSource = MyTileImageViewDataSource(imageSize: imageSize, tileSize: tileSize, imageURL: imageURL)
 
@@ -128,42 +131,45 @@ class ViewController: UIViewController {
 
     // editor button 구현
     @objc func editorBtn() {
-        if isEditor == false {
+        if isSelected == true {
+            back()
+            markerArray[selectedMarker].isHidden = true
+            markerArray.remove(at: selectedMarker)
+            UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+                self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+            })
+            dataModel.deleteMarker(markerID: markerID)
+        } else if isEditor == false {
             self.navigationItem.rightBarButtonItem?.title = "Done"
             tileImageScrollView.layer.borderWidth = 4
             tileImageScrollView.layer.borderColor = UIColor.red.cgColor
             centerPoint.isHidden = isEditor
             isEditor = true
-            
         } else {
             self.navigationItem.rightBarButtonItem?.title = "Editor"
             tileImageScrollView.layer.borderWidth = 0
             centerPoint.isHidden = isEditor
             isEditor = false
-            
             let editorViewController = EditorContentViewController()
-            
             editorViewController.zoom = tileImageScrollView.zoomScale
             editorViewController.positionX = tileImageScrollView.contentOffset.x/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.width/tileImageScrollView.zoomScale/2
             editorViewController.positionY = tileImageScrollView.contentOffset.y/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.height/tileImageScrollView.zoomScale/2
-            
             self.show(editorViewController, sender: nil)
         }
     }
 
     func back() {
         isEditor = false
+        isSelected = false
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         tileImageScrollView.layer.borderWidth = 0
         centerPoint.isHidden = true
-        self.navigationItem.rightBarButtonItem?.title = "Editor"
-        self.navigationItem.rightBarButtonItem?.isEnabled = true
         self.navigationItem.rightBarButtonItem?.title = "Editor"
         for marker in markerArray {
             marker.isHidden = false
         }
         contentViewController.dismiss()
     }
-    
     // back button 구현
     @objc func backBtn() {
         back()
@@ -194,9 +200,12 @@ extension ViewController: THMarkerViewDelegate {
         for marker in markerArray {
             marker.isHidden = true
         }
+        markerID = marker.markerID
+        selectedMarker = marker.index
         contentViewController.show(content: contentArray[marker.index])
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.title = ""
+        isSelected = true
+        self.navigationItem.rightBarButtonItem?.title = "Delete Marker"
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
     }
 }
 
@@ -205,10 +214,8 @@ extension ViewController: THContentViewControllerDataSource {
         let videoContentView = THVideoContentView()
         videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
         videoContentView.setContentView()
-        
         return [videoContentView]
     }
-    
     func setContentKey(_ contentController: THContentViewController) -> [String] {
         return ["videoContent"]
     }
