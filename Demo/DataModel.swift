@@ -40,9 +40,10 @@ class DataModel {
     func getMarkers(scrollView: UIScrollView, completionHandler:@escaping (Bool) -> ()) {
         refer.child(imgPath).child("markers").observeSingleEvent(of: .value, with: { (snapshot) in
             if let markers = snapshot.value as? [String:Any] {
+                self.markerArray.removeAll()
+                self.contentArray.removeAll()
                 let markerKeyArray = markers.keys.sorted()
                 let markerNum = markers.count
-                self.markerArray.removeAll()
                 for i in 0..<markerNum {
                     let marker = THMarkerView()
                     let markerInfo = markers[markerKeyArray[i]] as! [String:Any]

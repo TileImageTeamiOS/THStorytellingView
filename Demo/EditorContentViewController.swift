@@ -24,8 +24,6 @@ class EditorContentViewController: UIViewController {
     let dataModel = DataModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         self.editorScrollView.frame = self.view.frame
         self.editorScrollView.contentSize = CGSize(width:self.view.frame.width,height:1000)
         self.editorScrollView.backgroundColor = UIColor.white
@@ -36,7 +34,8 @@ class EditorContentViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(editorDone))
         editorScrollView.audioSelectBtn.addTarget(self, action: #selector(self.chooseAudio), for: .touchUpInside)
         editorScrollView.videoSelectBtn.addTarget(self, action: #selector(self.chooseVideo), for: .touchUpInside)
-        
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         editorScrollView.detailText.delegate = self
         NotificationCenter.default.addObserver(
             self,

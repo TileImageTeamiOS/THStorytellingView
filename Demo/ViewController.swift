@@ -73,7 +73,11 @@ class ViewController: UIViewController {
     }
     func showMarker() {
         dataModel.getMarkers(scrollView: tileImageScrollView) {_ in
+            for marker in self.markerArray {
+                marker.removeFromSuperview()
+            }
             self.markerArray.removeAll()
+            self.contentArray.removeAll()
             for i in 0..<self.dataModel.markerArray.count {
                 self.dataModel.markerArray[i].delegate = self
                 self.markerArray.append(self.dataModel.markerArray[i])
