@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     var isSelected = false
     var markerID = ""
     var selectedMarker = 0
-
+    
     // image info
     var imageSize = CGSize()
     var thumbnailName = "overwatchthumbnail"
@@ -40,8 +40,14 @@ class ViewController: UIViewController {
     var imageExtension: String = ""
     var tiles: [CGSize] = []
     
-    // json parsing
+    // data parsing
     var dataModel = DataModel()
+    
+    // albumView
+    let albumView = THAlbumView()
+    var selectedImage = UIView()
+    var originPoint = CGPoint()
+    var imageSelected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +71,33 @@ class ViewController: UIViewController {
         contentViewController.dataSource = self
         contentViewController.set(parentView: self.view)
         
+        setAlbumView()
+        tileImageScrollView.alpha = 0
+        navigationItem.rightBarButtonItem?.title = ""
+        navigationItem.leftBarButtonItem?.title = ""
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
     }
     override func viewWillAppear(_ animated: Bool) {
         showMarker()
         back()
         self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+    }
+    func setAlbumView() {
+        albumView.frame = self.view.frame
+        var index = 0
+        var imageArray = [UIImage]()
+        while index < 14{
+            let imageName = NSString(format: "%d.jpg", index)
+            let image = UIImage(named: imageName as String)
+            imageArray.append(image!)
+            index += 1
+        }
+        albumView.albumDelegate = self
+        albumView.addImageViews(imageArray: imageArray)
+        self.view.addSubview(albumView)
+        albumView.contentSize = CGSize(width: self.view.frame.width, height: albumView.getHeight())
+        albumView.isScrollEnabled = true
     }
     func showMarker() {
         dataModel.getMarkers(scrollView: tileImageScrollView) {_ in
@@ -159,20 +187,41 @@ class ViewController: UIViewController {
             editorViewController.positionX = tileImageScrollView.contentOffset.x/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.width/tileImageScrollView.zoomScale/2
             editorViewController.positionY = tileImageScrollView.contentOffset.y/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.height/tileImageScrollView.zoomScale/2
             self.show(editorViewController, sender: nil)
+            
         }
     }
 
     func back() {
-        isEditor = false
-        isSelected = false
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-        tileImageScrollView.layer.borderWidth = 0
-        centerPoint.isHidden = true
-        self.navigationItem.rightBarButtonItem?.title = "Editor"
-        for marker in markerArray {
-            marker.isHidden = false
+        if imageSelected && isEditor == false && isSelected == false {
+            self.view.addSubview(albumView)
+            self.imageSelected = false
+            self.navigationItem.rightBarButtonItem?.title = ""
+            self.navigationItem.leftBarButtonItem?.title = ""
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            self.navigationItem.leftBarButtonItem?.isEnabled = false
+            UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+                self.selectedImage.frame.origin = self.originPoint
+                self.selectedImage.frame.size.width = (self.view.frame.size.width - 10)/2
+                self.albumView.alpha = 1
+                self.tileImageScrollView.alpha = 0
+                for subView in self.albumView.subviews {
+                    subView.alpha = 1
+                }
+            })
+        } else {
+            if isEditor == true || isSelected == true {
+                navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+                self.navigationItem.rightBarButtonItem?.title = "Editor"
+            }
+            isEditor = false
+            isSelected = false
+            tileImageScrollView.layer.borderWidth = 0
+            centerPoint.isHidden = true
+            for marker in markerArray {
+                marker.isHidden = false
+            }
+            contentViewController.dismiss()
         }
-        contentViewController.dismiss()
     }
     // back button 구현
     @objc func backBtn() {
@@ -212,7 +261,6 @@ extension ViewController: THMarkerViewDelegate {
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
     }
 }
-
 extension ViewController: THContentViewControllerDataSource {
     func setContentView(_ contentController: THContentViewController) -> [THContentView] {
         let videoContentView = THVideoContentView()
@@ -224,3 +272,32 @@ extension ViewController: THContentViewControllerDataSource {
         return ["videoContent"]
     }
 }
+extension ViewController: THAlbumViewDelegate {
+    func tapEvent(sender: AnyObject) {
+        let naviHeight = (self.navigationController?.navigationBar.frame.height)!
+        let barHeight = UIApplication.shared.statusBarFrame.height
+        originPoint = sender.view.frame.origin
+        selectedImage = sender.view
+        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+            self.albumView.bringSubview(toFront: sender.view)
+            self.selectedImage.frame.size.width = self.view.frame.width
+            self.selectedImage.frame.origin.x = 0
+            self.selectedImage.frame.origin.y = (self.view.frame.height - sender.view.frame.height/2)/2 + self.albumView.contentOffset.y
+            for subView in self.albumView.subviews {
+                if subView != sender.view {
+                    subView.alpha = 0
+                }
+            }
+            self.tileImageScrollView.alpha = 1
+        }, completion: { _ in
+            self.imageSelected = true
+            self.albumView.removeFromSuperview()
+            self.albumView.alpha = 0
+            self.navigationItem.rightBarButtonItem?.title = "Editor"
+            self.navigationItem.leftBarButtonItem?.title = "Back"
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+        })
+    }
+}
+
