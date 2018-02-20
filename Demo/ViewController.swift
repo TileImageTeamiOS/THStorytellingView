@@ -10,6 +10,7 @@ import UIKit
 import THTiledImageView
 import THScrollView_minimap
 import THContentMarkerView
+import Kingfisher
 
 class ViewController: UIViewController {
     
@@ -54,7 +55,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let thumbnailImageURL = Bundle.main.url(forResource: thumbnailName , withExtension: thumbnailExtension)!
         let thumbnailImage = UIImage(contentsOfFile: thumbnailImageURL.path)!
-
         // image 설정
         if let image = UIImage(named: imageName + "." + imageExtension) {
             imageSize = CGSize(width: image.size.width, height: image.size.height)
@@ -113,21 +113,30 @@ class ViewController: UIViewController {
         thTextContent.setContentView()
         contentSetArray.append(THContentSet(contentKey: textKey, contentView: thTextContent))
     }
+    func getThumbnailImages() {
+        dataModel.getImgs() {_ in
+            for url in self.dataModel.thumbnailURL {
+                ImageDownloader.default.downloadImage(with: url, retrieveImageTask: nil,
+                                                      options: [], progressBlock: nil) { (image,error,urlData, _) in
+                                                        if let error = error {
+                                                            return
+                                                        } else {
+                                                            guard let image = image, let url = urlData else { return }
+                                                            self.albumView.addImage(image: image)
+                                                            self.albumView.contentSize = CGSize(width: self.view.frame.width, height: self.albumView.getHeight())
+                                                        }
+                                                        
+                }
+            }
+        }
+    }
     func setAlbumView() {
         albumView.frame = self.view.frame
-        var index = 0
-        var imageArray = [UIImage]()
-        while index < 14 {
-            let imageName = NSString(format: "%d.jpg", index)
-            let image = UIImage(named: imageName as String)
-            imageArray.append(image!)
-            index += 1
-        }
-        albumView.albumDelegate = self
-        albumView.addImageViews(imageArray: imageArray)
+        albumView.backgroundColor = UIColor.white
         self.view.addSubview(albumView)
-        albumView.contentSize = CGSize(width: self.view.frame.width, height: albumView.getHeight())
+        albumView.albumDelegate = self
         albumView.isScrollEnabled = true
+        getThumbnailImages()
     }
     func setMarkerView() {
         contentMarkerController.markerRemove()

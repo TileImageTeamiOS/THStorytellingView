@@ -15,9 +15,32 @@ open class THAlbumView: UIScrollView {
     open var albumDelegate: THAlbumViewDelegate?
     private var firstRowY:CGFloat = 0
     private var secondRowY:CGFloat = 0
+    func addImage(image: UIImage) {
+        let width = (self.frame.size.width - 10) / 2
+        var tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTap(_:)))
+        let height = image.size.height * (width / image.size.width)
+        let imageView = UIImageView()
+        imageView.image = image
+        self.addSubview(imageView)
+        imageView.frame.size.width = width
+        imageView.frame.size.height = height
+        if firstRowY <= secondRowY {
+            imageView.frame.origin = CGPoint(x:CGFloat(0), y:firstRowY)
+            firstRowY += height
+            firstRowY += 10
+        } else {
+            imageView.frame.origin = CGPoint(x:width+10, y:secondRowY)
+            secondRowY += height
+            secondRowY += 10
+        }
+        imageView.tag = 1
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+    }
     func addImageViews(imageArray: [UIImage]) {
         let width = (self.frame.size.width - 10) / 2
-        self.backgroundColor = UIColor.white
         for image in imageArray {
             var tapGestureRecognizer = UITapGestureRecognizer()
             tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTap(_:)))

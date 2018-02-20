@@ -12,4 +12,5 @@ target 'Demo' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod ‘THContentMarkerView’
+	pod 'Kingfisher'
 end

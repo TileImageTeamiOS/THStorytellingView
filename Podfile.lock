@@ -21,6 +21,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.3)
   - GoogleToolboxForMac/NSData+zlib (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
+  - Kingfisher (4.6.2)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -35,6 +36,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
+  - Kingfisher
   - SwiftLint
   - THContentMarkerView
   - THScrollView-minimap
@@ -47,6 +49,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: de4446507ccd3257fca37d16f40e1540324571fd
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  Kingfisher: 55b9c395bf8d3949676ad3861111923990ab68cf
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftLint: 2aa21b96c8d13396a051bc1cb659d2ce1e0075b0
@@ -54,6 +57,6 @@ SPEC CHECKSUMS:
   THScrollView-minimap: 7bcb71e9d818e772eac34838596f507963787229
   THTiledImageView: cb5450b582c5d330c25dfa1b89933f7df7680630
 
-PODFILE CHECKSUM: 86d9cc1fd2241c11a03fcc485dbcdc8a05ed69a3
+PODFILE CHECKSUM: fc96245f2c044596eb718e6817006b19cc343857
 
 COCOAPODS: 1.3.1

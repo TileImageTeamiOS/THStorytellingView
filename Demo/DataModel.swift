@@ -11,16 +11,26 @@ import UIKit
 import THContentMarkerView
 import Firebase
 import FirebaseDatabase
+import Kingfisher
 
 class DataModel {
     var markerArray = [THMarker]()
+    var thumbnailURL = [URL]()
     var refer = Database.database().reference()
     var imgPath = "imghash1"
-    func getImgs() {
+    func getImgs(completionHandler:@escaping (Bool) -> ()) {
         refer.observeSingleEvent(of: .value, with: { (snapshot) in
             if let getData = snapshot.value as? [String:Any] {
-                print(getData.keys.sorted())
+                let imgs = getData.keys.sorted()
+                for img in imgs {
+                    if let imgData = getData[img] as? [String:Any] {
+                        let thumbnail = imgData["thumbnail"] as! String
+                        let url = URL(string: thumbnail)
+                        self.thumbnailURL.append(url!)
+                    }
+                }
             }
+            completionHandler(true)
         })
     }
     func getThumbnail() {
