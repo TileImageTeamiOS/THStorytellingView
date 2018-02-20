@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		044D7812202D5E8000FF8918 /* THContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044D7811202D5E8000FF8918 /* THContentController.swift */; };
-		044D7814202D5E9B00FF8918 /* THVideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044D7813202D5E9B00FF8918 /* THVideoContentView.swift */; };
 		044D7818202D797800FF8918 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044D7817202D63E500FF8918 /* GoogleService-Info.plist */; };
 		044D781A202D7D2400FF8918 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044D7819202D7D2400FF8918 /* DataModel.swift */; };
 		045BF4152033DB8F00BE9E23 /* THAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF4142033DB8F00BE9E23 /* THAlbumView.swift */; };
@@ -30,8 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		044D7811202D5E8000FF8918 /* THContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THContentController.swift; sourceTree = "<group>"; };
-		044D7813202D5E9B00FF8918 /* THVideoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THVideoContentView.swift; sourceTree = "<group>"; };
 		044D7817202D63E500FF8918 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		044D7819202D7D2400FF8918 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		045BF4142033DB8F00BE9E23 /* THAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAlbumView.swift; sourceTree = "<group>"; };
@@ -111,7 +107,6 @@
 				4EBE66D2200B4BDC0091FA38 /* Resources */,
 				4EBE66D1200B4BC90091FA38 /* SupportingFiles */,
 				4EBE66DB200B56FB0091FA38 /* DataSource */,
-				4EBE66DC200B57A60091FA38 /* THContentView */,
 				4EBE66C1200B47940091FA38 /* ViewController.swift */,
 				045BF4142033DB8F00BE9E23 /* THAlbumView.swift */,
 				7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */,
@@ -151,15 +146,6 @@
 				4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */,
 			);
 			name = DataSource;
-			sourceTree = "<group>";
-		};
-		4EBE66DC200B57A60091FA38 /* THContentView */ = {
-			isa = PBXGroup;
-			children = (
-				044D7811202D5E8000FF8918 /* THContentController.swift */,
-				044D7813202D5E9B00FF8918 /* THVideoContentView.swift */,
-			);
-			path = THContentView;
 			sourceTree = "<group>";
 		};
 		5A02DE5C306F84A1A2620ACF /* Frameworks */ = {
@@ -301,7 +287,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/THMarkerView/THMarkerView.framework",
+				"${BUILT_PRODUCTS_DIR}/THContentMarkerView/THContentMarkerView.framework",
 				"${BUILT_PRODUCTS_DIR}/THScrollView-minimap/THScrollView_minimap.framework",
 				"${BUILT_PRODUCTS_DIR}/THTiledImageView/THTiledImageView.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -310,7 +296,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THMarkerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THContentMarkerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THScrollView_minimap.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THTiledImageView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -330,13 +316,11 @@
 			files = (
 				045BF4152033DB8F00BE9E23 /* THAlbumView.swift in Sources */,
 				4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */,
-				044D7814202D5E9B00FF8918 /* THVideoContentView.swift in Sources */,
 				044D781A202D7D2400FF8918 /* DataModel.swift in Sources */,
 				7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */,
 				4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */,
 				4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */,
 				4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */,
-				044D7812202D5E8000FF8918 /* THContentController.swift in Sources */,
 				4EBE66D4200B4EA50091FA38 /* MyTileImageViewDataSource.swift in Sources */,
 				4EBE66C0200B47940091FA38 /* AppDelegate.swift in Sources */,
 			);

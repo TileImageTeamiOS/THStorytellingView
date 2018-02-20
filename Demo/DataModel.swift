@@ -8,13 +8,12 @@
 
 import Foundation
 import UIKit
-import THMarkerView
+import THContentMarkerView
 import Firebase
 import FirebaseDatabase
 
 class DataModel {
-    var markerArray = [THMarkerView]()
-    var contentArray = [THContent]()
+    var markerArray = [THMarker]()
     var refer = Database.database().reference()
     var imgPath = "imghash1"
     func getImgs() {
@@ -41,11 +40,9 @@ class DataModel {
         refer.child(imgPath).child("markers").observeSingleEvent(of: .value, with: { (snapshot) in
             if let markers = snapshot.value as? [String:Any] {
                 self.markerArray.removeAll()
-                self.contentArray.removeAll()
                 let markerKeyArray = markers.keys.sorted()
                 let markerNum = markers.count
                 for i in 0..<markerNum {
-                    let marker = THMarkerView()
                     let markerInfo = markers[markerKeyArray[i]] as! [String:Any]
                     let position = markerInfo["position"] as! [String: Float]
                     let x = position["x"]
@@ -71,13 +68,8 @@ class DataModel {
                         if !(textTitle == nil && text == nil && link == nil) {
                         }
                     }
-                    marker.frame.size =  CGSize(width: 20, height: 20)
-                    marker.set(origin: CGPoint(x: CGFloat(x!), y: CGFloat(y!)), zoomScale: CGFloat(zoomScale!), scrollView: scrollView)
-                    marker.setImage(markerImage: UIImage(named: "page.png")!)
-                    marker.index = i
-                    marker.markerID = markerKeyArray[i]
+                    let marker = THMarker(zoomScale: CGFloat(zoomScale!) , origin: CGPoint(x: CGFloat(x!), y: CGFloat(y!)), markerID: markerKeyArray[i], contentInfo: content)
                     self.markerArray.append(marker)
-                    self.contentArray.append(THContent(contentInfo: content))
                 }
             }
             completionHandler(true)

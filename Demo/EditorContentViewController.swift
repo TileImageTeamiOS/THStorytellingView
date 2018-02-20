@@ -8,7 +8,7 @@
 
 import UIKit
 import MediaPlayer
-import THMarkerView
+import THContentMarkerView
 
 class EditorContentViewController: UIViewController {
     var editorScrollView = EditorScrollView()

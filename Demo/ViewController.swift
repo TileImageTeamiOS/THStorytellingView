@@ -9,9 +9,10 @@
 import UIKit
 import THTiledImageView
 import THScrollView_minimap
-import THMarkerView
+import THContentMarkerView
 
 class ViewController: UIViewController {
+    
     //THTileImgeView set
     @IBOutlet weak var tileImageScrollView: THTiledImageScrollView!
     var tileImageDataSource: THTiledImageViewDataSource?
@@ -20,10 +21,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var minimapView: THMinimapView!
     var minimapDataSource: THMinimapDataSource?
 
-    //THScrollView content set
-    var contentArray: [THContent] = []
-    var contentViewController = THContentViewController()
-    var markerArray = [THMarkerView]()
+    //THMarker content set
+    var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
+    var markerArray = [THMarker]()
+    var contentSetArray = [THContentSet]()
 
     //THEditor set
     var centerPoint = UIView()
@@ -68,8 +69,8 @@ class ViewController: UIViewController {
         setupEditor()
         
         // content dict 설정
-        contentViewController.dataSource = self
-        contentViewController.set(parentView: self.view)
+        contentMarkerController.dataSource = self
+        contentMarkerController.delegate = self
         
         setAlbumView()
         tileImageScrollView.alpha = 0
@@ -77,17 +78,46 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItem?.title = ""
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.leftBarButtonItem?.isEnabled = false
+        
+        setContentView()
     }
     override func viewWillAppear(_ animated: Bool) {
         showMarker()
         back()
         self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
     }
+    func setContentView() {
+        // contentView set
+        let videoKey = "videoContent"
+        let thVideoContent = THVideoContentView()
+        thVideoContent.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
+        thVideoContent.setContentView()
+        contentSetArray.append(THContentSet(contentKey: videoKey, contentView: thVideoContent))
+    
+        let audioKey = "audioContent"
+        let thAudioContent = THAudioContentView()
+        thAudioContent.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+        thAudioContent.setContentView()
+        contentSetArray.append(THContentSet(contentKey: audioKey, contentView: thAudioContent))
+    
+        let titleKey = "titleContent"
+        let thTitleContent = THTitleContentView()
+        thTitleContent.frame.size = CGSize(width: 100, height: 50)
+        thTitleContent.center = self.view.center
+        thTitleContent.setView()
+        contentSetArray.append(THContentSet(contentKey: titleKey, contentView: thTitleContent))
+        
+        let textKey = "textContent"
+        let thTextContent = THTextContentView()
+        thTextContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
+        thTextContent.setContentView()
+        contentSetArray.append(THContentSet(contentKey: textKey, contentView: thTextContent))
+    }
     func setAlbumView() {
         albumView.frame = self.view.frame
         var index = 0
         var imageArray = [UIImage]()
-        while index < 14{
+        while index < 14 {
             let imageName = NSString(format: "%d.jpg", index)
             let image = UIImage(named: imageName as String)
             imageArray.append(image!)
@@ -99,21 +129,20 @@ class ViewController: UIViewController {
         albumView.contentSize = CGSize(width: self.view.frame.width, height: albumView.getHeight())
         albumView.isScrollEnabled = true
     }
+    func setMarkerView() {
+        contentMarkerController.markerRemove()
+        contentMarkerController.markerViewImage = UIImage(named: "page.png")
+        contentMarkerController.markerViewSize = CGSize(width: 20, height: 20)
+        contentMarkerController.set(parentView: self.view, scrollView: self.tileImageScrollView)
+        contentMarkerController.setMarkerFrame()
+    }
     func showMarker() {
         dataModel.getMarkers(scrollView: tileImageScrollView) {_ in
-            for marker in self.markerArray {
-                marker.removeFromSuperview()
-            }
             self.markerArray.removeAll()
-            self.contentArray.removeAll()
             for i in 0..<self.dataModel.markerArray.count {
-                self.dataModel.markerArray[i].delegate = self
                 self.markerArray.append(self.dataModel.markerArray[i])
-                self.contentArray.append(self.dataModel.contentArray[i])
             }
-            for marker in self.markerArray {
-                marker.framSet()
-            }
+            self.setMarkerView()
         }
     }
     func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
@@ -165,8 +194,8 @@ class ViewController: UIViewController {
     @objc func editorBtn() {
         if isSelected == true {
             back()
-            markerArray[selectedMarker].isHidden = true
             markerArray.remove(at: selectedMarker)
+            setMarkerView()
             UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
                 self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
             })
@@ -187,7 +216,6 @@ class ViewController: UIViewController {
             editorViewController.positionX = tileImageScrollView.contentOffset.x/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.width/tileImageScrollView.zoomScale/2
             editorViewController.positionY = tileImageScrollView.contentOffset.y/tileImageScrollView.zoomScale + tileImageScrollView.bounds.size.height/tileImageScrollView.zoomScale/2
             self.show(editorViewController, sender: nil)
-            
         }
     }
 
@@ -217,10 +245,8 @@ class ViewController: UIViewController {
             isSelected = false
             tileImageScrollView.layer.borderWidth = 0
             centerPoint.isHidden = true
-            for marker in markerArray {
-                marker.isHidden = false
-            }
-            contentViewController.dismiss()
+            contentMarkerController.markerHidden(bool: false)
+            contentMarkerController.contentDismiss()
         }
     }
     // back button 구현
@@ -243,35 +269,36 @@ extension ViewController: THTiledImageScrollViewDelegate {
     }
 
     func didZoom(scrollView: THTiledImageScrollView) {
-        for marker in markerArray {
-            marker.framSet()
-        }
+        contentMarkerController.setMarkerFrame()
     }
 }
-extension ViewController: THMarkerViewDelegate {
-    func tapEvent(marker: THMarkerView) {
-        for marker in markerArray {
-            marker.isHidden = true
-        }
-        markerID = marker.markerID
-        selectedMarker = marker.index
-        contentViewController.show(content: contentArray[marker.index])
+extension ViewController: THContentMarkerControllerDataSource {
+    func numberOfMarker(_ contentMarkerController: THContentMarkerController) -> Int {
+        return markerArray.count
+    }
+    func setMarker(_ contentMarkerController: THContentMarkerController, markerIndex: Int) -> THMarker {
+        return markerArray[markerIndex]
+    }
+    func numberOfContent(_ contentMarkerController: THContentMarkerController) -> Int {
+        return contentSetArray.count
+    }
+    func setContentView(_ contentMarkerController: THContentMarkerController, contentSetIndex: Int) -> THContentSet {
+        return contentSetArray[contentSetIndex]
+    }
+}
+
+extension ViewController: THContentMarkerControllerDelegate {
+    
+    func markerTap(_ contentMarkerController: THContentMarkerController, marker: THMarkerView) {
         isSelected = true
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.red
         self.navigationItem.rightBarButtonItem?.title = "Delete Marker"
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+        contentMarkerController.markerHidden(bool: true)
+        selectedMarker = marker.index
+        markerID = marker.markerID
     }
 }
-extension ViewController: THContentViewControllerDataSource {
-    func setContentView(_ contentController: THContentViewController) -> [THContentView] {
-        let videoContentView = THVideoContentView()
-        videoContentView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        videoContentView.setContentView()
-        return [videoContentView]
-    }
-    func setContentKey(_ contentController: THContentViewController) -> [String] {
-        return ["videoContent"]
-    }
-}
+
 extension ViewController: THAlbumViewDelegate {
     func tapEvent(sender: AnyObject) {
         let naviHeight = (self.navigationController?.navigationBar.frame.height)!
@@ -300,4 +327,3 @@ extension ViewController: THAlbumViewDelegate {
         })
     }
 }
-
