@@ -16,14 +16,9 @@
 		4EBE66C7200B47940091FA38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C6200B47940091FA38 /* Assets.xcassets */; };
 		4EBE66CA200B47940091FA38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C8200B47940091FA38 /* LaunchScreen.storyboard */; };
 		4EBE66D4200B4EA50091FA38 /* MyTileImageViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */; };
-		4EBE66D7200B500E0091FA38 /* shoppingSmall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */; };
-		4EBE66D8200B500E0091FA38 /* shopping.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66D6200B500E0091FA38 /* shopping.jpg */; };
 		4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */; };
 		4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */; };
 		4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E2200B58440091FA38 /* EditorScrollView.swift */; };
-		4EBE66EF200C77F40091FA38 /* overwatch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66ED200C77F40091FA38 /* overwatch.jpg */; };
-		4EBE66F0200C77F40091FA38 /* overwatchthumbnail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66EE200C77F40091FA38 /* overwatchthumbnail.jpg */; };
-		7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */; };
 		969EE020EFC1B0AE5FB4C614 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA760824E91B64E3E00480B /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,15 +34,10 @@
 		4EBE66C9200B47940091FA38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EBE66CB200B47940091FA38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTileImageViewDataSource.swift; sourceTree = "<group>"; };
-		4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shoppingSmall.jpg; sourceTree = "<group>"; };
-		4EBE66D6200B500E0091FA38 /* shopping.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shopping.jpg; sourceTree = "<group>"; };
 		4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMinimapDataSource.swift; sourceTree = "<group>"; };
 		4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
 		4EBE66E2200B58440091FA38 /* EditorScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
-		4EBE66ED200C77F40091FA38 /* overwatch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = overwatch.jpg; sourceTree = "<group>"; };
-		4EBE66EE200C77F40091FA38 /* overwatchthumbnail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = overwatchthumbnail.jpg; sourceTree = "<group>"; };
 		50F14293CE24BA244426453A /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingVC.swift; sourceTree = "<group>"; };
 		8BB830D994E44811AB567785 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA760824E91B64E3E00480B /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,7 +99,6 @@
 				4EBE66DB200B56FB0091FA38 /* DataSource */,
 				4EBE66C1200B47940091FA38 /* ViewController.swift */,
 				045BF4142033DB8F00BE9E23 /* THAlbumView.swift */,
-				7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */,
 				044D7819202D7D2400FF8918 /* DataModel.swift */,
 				4EBE66C3200B47940091FA38 /* Main.storyboard */,
 			);
@@ -130,10 +119,6 @@
 		4EBE66D2200B4BDC0091FA38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4EBE66ED200C77F40091FA38 /* overwatch.jpg */,
-				4EBE66EE200C77F40091FA38 /* overwatchthumbnail.jpg */,
-				4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */,
-				4EBE66D6200B500E0091FA38 /* shopping.jpg */,
 				4EBE66C6200B47940091FA38 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -219,14 +204,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EBE66D8200B500E0091FA38 /* shopping.jpg in Resources */,
 				044D7818202D797800FF8918 /* GoogleService-Info.plist in Resources */,
-				4EBE66F0200C77F40091FA38 /* overwatchthumbnail.jpg in Resources */,
-				4EBE66EF200C77F40091FA38 /* overwatch.jpg in Resources */,
 				4EBE66CA200B47940091FA38 /* LaunchScreen.storyboard in Resources */,
 				4EBE66C7200B47940091FA38 /* Assets.xcassets in Resources */,
 				4EBE66C5200B47940091FA38 /* Main.storyboard in Resources */,
-				4EBE66D7200B500E0091FA38 /* shoppingSmall.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +300,6 @@
 				045BF4152033DB8F00BE9E23 /* THAlbumView.swift in Sources */,
 				4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */,
 				044D781A202D7D2400FF8918 /* DataModel.swift in Sources */,
-				7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */,
 				4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */,
 				4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */,
 				4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */,

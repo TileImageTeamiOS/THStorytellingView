@@ -36,34 +36,23 @@ class ViewController: UIViewController {
     
     // image info
     var imageSize = CGSize()
-    var thumbnailName = "overwatchthumbnail"
-    var thumbnailExtension = "jpg"
-    var imageName: String = ""
-    var imageExtension: String = ""
-    var tiles: [CGSize] = []
+    var tiles: [CGSize] = [CGSize(width: 1024, height: 1024), CGSize(width: 512, height: 512), CGSize(width: 256, height: 256)]
     
     // data parsing
     var dataModel = DataModel()
     
     // albumView
     let albumView = THAlbumView()
+    var thumbnailImgs = [UIImage]()
     var selectedImage = UIView()
     var originPoint = CGPoint()
     var imageSelected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let thumbnailImageURL = Bundle.main.url(forResource: thumbnailName , withExtension: thumbnailExtension)!
-        let thumbnailImage = UIImage(contentsOfFile: thumbnailImageURL.path)!
-        // image 설정
-        if let image = UIImage(named: imageName + "." + imageExtension) {
-            imageSize = CGSize(width: image.size.width, height: image.size.height)
-            // set tile image
-            setupTileImage(imageSize: imageSize, tileSize: tiles, imageURL: thumbnailImageURL)
-        }
-
-        // set minimap
-        setupMinimap(thumbnailImage: thumbnailImage)
+        
+        //set datamodel
+        dataModel.setup()
 
         // set editor
         setupEditor()
@@ -72,6 +61,7 @@ class ViewController: UIViewController {
         contentMarkerController.dataSource = self
         contentMarkerController.delegate = self
         
+        // set albumview
         setAlbumView()
         tileImageScrollView.alpha = 0
         navigationItem.rightBarButtonItem?.title = ""
@@ -79,12 +69,15 @@ class ViewController: UIViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.leftBarButtonItem?.isEnabled = false
         
+        // set contentview
         setContentView()
     }
     override func viewWillAppear(_ animated: Bool) {
-        showMarker()
-        back()
-        self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+        if tileImageScrollView.alpha == 1 {
+            showMarker()
+            back()
+            self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+        }
     }
     func setContentView() {
         // contentView set
@@ -114,14 +107,16 @@ class ViewController: UIViewController {
         contentSetArray.append(THContentSet(contentKey: textKey, contentView: thTextContent))
     }
     func getThumbnailImages() {
-        dataModel.getImgs() {_ in
+        dataModel.getSnapshot() {_ in
+            self.dataModel.getImgs()
             for url in self.dataModel.thumbnailURL {
                 ImageDownloader.default.downloadImage(with: url, retrieveImageTask: nil,
                                                       options: [], progressBlock: nil) { (image,error,urlData, _) in
-                                                        if let error = error {
+                                                        if error != nil {
                                                             return
                                                         } else {
-                                                            guard let image = image, let url = urlData else { return }
+                                                            guard let image = image, let _ = urlData else { return }
+                                                            self.thumbnailImgs.append(image)
                                                             self.albumView.addImage(image: image)
                                                             self.albumView.contentSize = CGSize(width: self.view.frame.width, height: self.albumView.getHeight())
                                                         }
@@ -154,26 +149,6 @@ class ViewController: UIViewController {
             self.setMarkerView()
         }
     }
-    func setupTileImage(imageSize: CGSize, tileSize: [CGSize], imageURL: URL) {
-        tileImageDataSource = MyTileImageViewDataSource(imageSize: imageSize, tileSize: tileSize, imageURL: imageURL)
-
-        tileImageDataSource?.delegate = self
-        tileImageDataSource?.thumbnailImageName = imageName
-
-        // 줌을 가장 많이 확대한 수준
-        tileImageDataSource?.maxTileLevel = 5
-
-        // 줌이 가장 확대가 안 된 수준
-        tileImageDataSource?.minTileLevel = 1
-        tileImageDataSource?.maxZoomLevel = 8
-        tileImageDataSource?.imageExtension = imageExtension
-        tileImageScrollView.set(dataSource: tileImageDataSource!)
-
-        tileImageDataSource?.requestBackgroundImage { _ in
-
-        }
-    }
-
     func setupMinimap(thumbnailImage: UIImage) {
         minimapDataSource = MyMinimapDataSource(scrollView: tileImageScrollView, thumbnailImage: thumbnailImage , originImageSize: imageSize)
 
@@ -198,7 +173,33 @@ class ViewController: UIViewController {
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
     }
-
+    func setupTileImage(thumbnail: UIImage) {
+        let tileImageBaseURL = dataModel.getTileImageBaseURL()
+        if var size = dataModel.getImgSize() as? CGSize {
+            imageSize = size
+        } else {
+            imageSize = thumbnail.size
+        }
+        tileImageDataSource = MyTileImageViewDataSource(tileImageBaseURL: tileImageBaseURL, imageSize: imageSize, tileSize: tiles)
+        
+        guard let dataSource = tileImageDataSource else { return }
+        
+        // 줌을 가장 많이 확대한 수준
+        dataSource.maxTileLevel = dataModel.getMaxTileLevel()
+        
+        // 줌이 가장 확대가 안 된 수준
+        dataSource.minTileLevel = dataModel.getMinTileLevel()
+        
+        dataSource.maxZoomLevel = CGFloat(dataModel.getMaxZoomLevel())
+        
+        // Local Image For Background
+        dataSource.setBackgroundImage(image: thumbnail)
+        
+        dataSource.thumbnailImageName = dataModel.getTileImageName()
+        dataSource.imageExtension = dataModel.getTileImageExtension()
+        
+        tileImageScrollView.set(dataSource: dataSource)
+    }
     // editor button 구현
     @objc func editorBtn() {
         if isSelected == true {
@@ -230,12 +231,18 @@ class ViewController: UIViewController {
 
     func back() {
         if imageSelected && isEditor == false && isSelected == false {
-            self.view.addSubview(albumView)
-            self.imageSelected = false
-            self.navigationItem.rightBarButtonItem?.title = ""
-            self.navigationItem.leftBarButtonItem?.title = ""
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-            self.navigationItem.leftBarButtonItem?.isEnabled = false
+            view.addSubview(albumView)
+            for subview in tileImageScrollView.subviews {
+                subview.removeFromSuperview()
+            }
+            for subview in minimapView.subviews {
+                subview.removeFromSuperview()
+            }
+            imageSelected = false
+            navigationItem.rightBarButtonItem?.title = ""
+            navigationItem.leftBarButtonItem?.title = ""
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            navigationItem.leftBarButtonItem?.isEnabled = false
             UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
                 self.selectedImage.frame.origin = self.originPoint
                 self.selectedImage.frame.size.width = (self.view.frame.size.width - 10)/2
@@ -297,7 +304,6 @@ extension ViewController: THContentMarkerControllerDataSource {
 }
 
 extension ViewController: THContentMarkerControllerDelegate {
-    
     func markerTap(_ contentMarkerController: THContentMarkerController, marker: THMarkerView) {
         isSelected = true
         navigationItem.rightBarButtonItem?.tintColor = UIColor.red
@@ -333,6 +339,13 @@ extension ViewController: THAlbumViewDelegate {
             self.navigationItem.leftBarButtonItem?.title = "Back"
             self.navigationItem.rightBarButtonItem?.isEnabled = true
             self.navigationItem.leftBarButtonItem?.isEnabled = true
+            //
+            self.setupTileImage(thumbnail: self.thumbnailImgs[sender.view.tag])
+            // set minimap
+            self.setupMinimap(thumbnailImage: self.thumbnailImgs[sender.view.tag])
+            // set dataModel
+            self.dataModel.imgPath = self.dataModel.imgKey[sender.view.tag]
+            
         })
     }
 }
