@@ -16,7 +16,7 @@ open class THAlbumView: UIScrollView {
     private var firstRowY:CGFloat = 0
     private var secondRowY:CGFloat = 0
     private var index = 0
-    func addImage(image: UIImage) {
+    func addImage(image: UIImage, imgKey: String) {
         let width = (self.frame.size.width - 10) / 2
         var tapGestureRecognizer = UITapGestureRecognizer()
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTap(_:)))
@@ -35,6 +35,7 @@ open class THAlbumView: UIScrollView {
             secondRowY += height
             secondRowY += 10
         }
+        imageView.accessibilityIdentifier = imgKey
         imageView.tag = index
         index += 1
         imageView.contentMode = .scaleAspectFill

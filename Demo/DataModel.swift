@@ -132,25 +132,28 @@ class DataModel {
                     let x = position["x"]
                     let y = position["y"]
                     let zoomScale = position["zoomScale"]
-                    var content = Dictionary<String, Any>()
-                    if let contents = markerInfo["contents"] as? [String: String] {
-                        let video = contents["video"]
-                        let audio = contents["audio"]
-                        let title = contents["title"]
-                        let text = contents["text"]
-                        let link = contents["link"]
-                        let textTitle = contents["textTitle"]
-                        if title != nil {
-                            content["titleoContent"] = title
+                    var content = [String: Any]()
+                    if let contents = markerInfo["contents"] as? [String: Any] {
+                        if let title = contents["title"] as? String {
+                            content["titleContent"] = title
                         }
-                        if video != nil {
-                            content["videoContent"] = URL(string: video!)
+                        if let video = contents["video"] as? String {
+                            content["videoContent"] = URL(string: video)
                         }
-                        if audio != nil {
-                            content["audioContent"] = URL(string: audio!)
+                        if let audio = contents["audio"] as? String {
+                            content["audioContent"] = URL(string: audio)
                         }
-                        if !(textTitle == nil && text == nil && link == nil) {
+                        var textContent = [String: String]()
+                        if let textTitle = contents["textTitle"] as? String {
+                            textContent["title"] = textTitle
                         }
+                        if let link = contents["link"] as? String {
+                            textContent["link"] = link
+                        }
+                        if let text = contents["text"] as? String {
+                            textContent["text"] = text
+                        }
+                        content["textContent"] = textContent
                     }
                     let marker = THMarker(zoomScale: CGFloat(zoomScale!) , origin: CGPoint(x: CGFloat(x!), y: CGFloat(y!)), markerID: markerKeyArray[i], contentInfo: content)
                     self.markerArray.append(marker)
@@ -170,25 +173,28 @@ class DataModel {
                     let x = position["x"]
                     let y = position["y"]
                     let zoomScale = position["zoomScale"]
-                    var content = Dictionary<String, Any>()
-                    if let contents = markerInfo["contents"] as? [String: String] {
-                        let video = contents["video"]
-                        let audio = contents["audio"]
-                        let title = contents["title"]
-                        let text = contents["text"]
-                        let link = contents["link"]
-                        let textTitle = contents["textTitle"]
-                        if title != nil {
-                            content["titleoContent"] = title
+                    var content = [String:Any]()
+                    if let contents = markerInfo["contents"] as? [String: Any] {
+                        if let title = contents["title"] as? String {
+                            content["titleContent"] = title
                         }
-                        if video != nil {
-                            content["videoContent"] = URL(string: video!)
+                        if let video = contents["video"] as? String {
+                            content["videoContent"] = URL(string: video)
                         }
-                        if audio != nil {
-                            content["audioContent"] = URL(string: audio!)
+                        if let audio = contents["audio"] as? String {
+                            content["audioContent"] = URL(string: audio)
                         }
-                        if !(textTitle == nil && text == nil && link == nil) {
+                        var textContent = [String: String]()
+                        if let textTitle = contents["textTitle"] as? String {
+                            textContent["title"] = textTitle
                         }
+                        if let link = contents["link"] as? String {
+                            textContent["link"] = link
+                        }
+                        if let text = contents["text"] as? String {
+                            textContent["text"] = text
+                        }
+                        content["textContent"] = textContent
                     }
                     let marker = THMarker(zoomScale: CGFloat(zoomScale!) , origin: CGPoint(x: CGFloat(x!), y: CGFloat(y!)), markerID: markerKeyArray[i], contentInfo: content)
                     self.markerArray.append(marker)
@@ -197,7 +203,7 @@ class DataModel {
             completionHandler(true)
         })
     }
-    func addMarker(position: Dictionary<String, CGFloat>, contents: Dictionary<String, String>, completionHandler:@escaping (Bool) -> ()) {
+    func addMarker(position: [String: CGFloat], contents: [String: String], completionHandler:@escaping (Bool) -> ()) {
         refer.child(imgPath).child("markers").observeSingleEvent(of: .value, with: { (snapshot) in
             let markerID = UUID().uuidString
             self.refer.child(self.imgPath).child("markers").child(markerID).child("position").setValue(position)
