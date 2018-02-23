@@ -13,7 +13,6 @@ import THContentMarkerView
 import Kingfisher
 
 class ViewController: UIViewController {
-    
     //THTileImgeView set
     @IBOutlet weak var tileImageScrollView: THTiledImageScrollView!
     var tileImageDataSource: THTiledImageViewDataSource?
@@ -34,43 +33,34 @@ class ViewController: UIViewController {
     var isSelected = false
     var markerID = ""
     var selectedMarker = 0
-    
     // image info
     var imageSize = CGSize()
     var tiles: [CGSize] = [CGSize(width: 1024, height: 1024), CGSize(width: 512, height: 512), CGSize(width: 256, height: 256)]
-    
     // data parsing
     var dataModel = DataModel()
-    
     // albumView
-    let albumView = THAlbumView()
+    var albumView = THAlbumView()
     var thumbnailImgs = [UIImage]()
     var selectedImage = UIView()
-    var originPoint = CGPoint()
+    var originFrame = CGRect()
     var imageSelected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isTranslucent = false
         //set datamodel
         dataModel.setup()
-
         // set editor
         setupEditor()
-        
         // content dict 설정
         contentMarkerController.dataSource = self
         contentMarkerController.delegate = self
-        
         tileImageScrollView.alpha = 0
         navigationItem.rightBarButtonItem?.title = ""
         navigationItem.leftBarButtonItem?.title = ""
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.leftBarButtonItem?.isEnabled = false
-        
         // set albumview
         setAlbumView()
-        
         // set contentview
         setContentView()
     }
@@ -86,24 +76,23 @@ class ViewController: UIViewController {
         thVideoContent.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
         thVideoContent.setContentView()
         contentSetArray.append(THContentSet(contentKey: videoKey, contentView: thVideoContent))
-    
         let audioKey = "audioContent"
         let thAudioContent = THAudioContentView()
         thAudioContent.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
         thAudioContent.setContentView()
         contentSetArray.append(THContentSet(contentKey: audioKey, contentView: thAudioContent))
-    
         let titleKey = "titleContent"
         let thTitleContent = THTitleContentView()
         thTitleContent.frame.size = CGSize(width: 100, height: 50)
         thTitleContent.center = self.view.center
         thTitleContent.setView()
         contentSetArray.append(THContentSet(contentKey: titleKey, contentView: thTitleContent))
-        
         let textKey = "textContent"
         let thTextContent = THTextContentView()
-        thTextContent.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height*(1/5), width: self.view.frame.width, height: self.view.frame.height*(1/5))
-        thTextContent.setContentView()
+        thTextContent.frame = CGRect(x: 0, y: self.view.frame.height - 28, width: self.view.frame.width, height: 28)
+        thTextContent.layer.borderColor = UIColor.black.cgColor
+        thTextContent.layer.borderWidth = 0.1
+        thTextContent.setContentView(upYFloat: 200)
         contentSetArray.append(THContentSet(contentKey: textKey, contentView: thTextContent))
     }
     func getThumbnailImages() {
@@ -125,9 +114,22 @@ class ViewController: UIViewController {
         }
     }
     func setAlbumView() {
-        albumView.frame = self.view.frame
-        albumView.backgroundColor = UIColor.white
         self.view.addSubview(albumView)
+        albumView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 11.0, *) {
+            let guide = self.view.safeAreaLayoutGuide
+            albumView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+            albumView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+            albumView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+            albumView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+        } else {
+            NSLayoutConstraint(item: albumView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: albumView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: albumView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: albumView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+        }
+        print(albumView.frame)
+        albumView.backgroundColor = UIColor.white
         albumView.albumDelegate = self
         albumView.isScrollEnabled = true
         getThumbnailImages()
@@ -135,7 +137,7 @@ class ViewController: UIViewController {
     func setMarkerView() {
         contentMarkerController.markerRemove()
         contentMarkerController.markerViewImage = UIImage(named: "page.png")
-        contentMarkerController.markerViewSize = CGSize(width: 25, height: 25)
+        contentMarkerController.markerViewSize = CGSize(width: 30, height: 30)
         contentMarkerController.set(parentView: self.view, scrollView: self.tileImageScrollView)
         contentMarkerController.setMarkerFrame()
     }
@@ -159,7 +161,8 @@ class ViewController: UIViewController {
 
     func setupEditor() {
         // edit center point 설정
-        centerPoint.frame = CGRect(x: tileImageScrollView.frame.width/2 - 5 , y: tileImageScrollView.frame.height/2 + (self.navigationController?.navigationBar.frame.height)! - 15, width: CGFloat(10), height: CGFloat(10))
+        let naviHeight = (self.navigationController?.navigationBar.frame.height)!
+        centerPoint.frame = CGRect(x: self.view.frame.width/2 - 5 , y: (self.view.frame.height - naviHeight)/2 + 5 + naviHeight, width: CGFloat(10), height: CGFloat(10))
         centerPoint.backgroundColor = UIColor.red
         centerPoint.layer.cornerRadius = 5
 
@@ -167,20 +170,19 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
 
         // editor button 설정
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backBtn))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(back))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Editor", style: .plain, target: self, action: #selector(editorBtn))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
     }
     func setupTileImage(thumbnail: UIImage) {
         let tileImageBaseURL = dataModel.getTileImageBaseURL()
-        if let size = dataModel.getImgSize() as? CGSize {
+        if let size = dataModel.getImgSize() {
             imageSize = size
         } else {
             imageSize = thumbnail.size
         }
         tileImageDataSource = MyTileImageViewDataSource(tileImageBaseURL: tileImageBaseURL, imageSize: imageSize, tileSize: tiles)
-
         guard let dataSource = tileImageDataSource else { return }
 
         // 줌을 가장 많이 확대한 수준
@@ -229,18 +231,13 @@ class ViewController: UIViewController {
         }
     }
     func backToAlbumView() {
-        view.addSubview(albumView)
-        for subview in minimapView.subviews {
-            subview.removeFromSuperview()
-        }
         imageSelected = false
         navigationItem.rightBarButtonItem?.title = ""
         navigationItem.leftBarButtonItem?.title = ""
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.leftBarButtonItem?.isEnabled = false
-        UIView.animate(withDuration: 2.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
-            self.selectedImage.frame.origin = self.originPoint
-            self.selectedImage.frame.size.width = (self.view.frame.size.width - 10)/2
+        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+            self.selectedImage.frame = self.originFrame
             self.albumView.alpha = 1
             self.tileImageScrollView.alpha = 0
             for subView in self.albumView.subviews {
@@ -248,6 +245,9 @@ class ViewController: UIViewController {
             }
         }, completion: { _ in
             for subview in self.tileImageScrollView.subviews {
+                subview.removeFromSuperview()
+            }
+            for subview in self.minimapView.subviews {
                 subview.removeFromSuperview()
             }
         })
@@ -263,20 +263,17 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         contentMarkerController.markerHidden(bool: false)
         contentMarkerController.contentDismiss()
+        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+            self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
+        })
     }
-    func back() {
+    // back button 구현
+    @objc func back() {
         if imageSelected && isEditor == false && isSelected == false && initialZoom == tileImageScrollView.zoomScale {
             backToAlbumView()
         } else {
             backToInitialZoom()
         }
-    }
-    // back button 구현
-    @objc func backBtn() {
-        back()
-        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
-            self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
-        })
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -320,15 +317,19 @@ extension ViewController: THContentMarkerControllerDelegate {
 
 extension ViewController: THAlbumViewDelegate {
     func tapEvent(sender: AnyObject) {
-        let naviHeight = (self.navigationController?.navigationBar.frame.height)!
-        let barHeight = UIApplication.shared.statusBarFrame.height
-        originPoint = sender.view.frame.origin
+        originFrame = sender.view.frame
         selectedImage = sender.view
-        UIView.animate(withDuration: 2.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
             self.albumView.bringSubview(toFront: sender.view)
-            self.selectedImage.frame.size.width = self.view.frame.width
-            self.selectedImage.frame.origin.x = 0
-            self.selectedImage.frame.origin.y = (self.view.frame.height - sender.view.frame.height/2)/2 + self.albumView.contentOffset.y
+            if (self.albumView.frame.height/self.albumView.frame.width) > (self.selectedImage.frame.height/self.selectedImage.frame.width) {
+                self.selectedImage.frame.origin.x = 0
+                self.selectedImage.frame.size.width = self.albumView.frame.width
+                self.selectedImage.frame.origin.y = (self.albumView.frame.height - self.selectedImage.frame.height) / 2 + self.albumView.contentOffset.y
+            } else {
+                self.selectedImage.frame.origin.y = self.albumView.contentOffset.y
+                self.selectedImage.frame.size.height = self.albumView.frame.height
+                self.selectedImage.frame.origin.x = (self.albumView.frame.width - self.selectedImage.frame.width) / 2
+            }
             for subView in self.albumView.subviews {
                 if subView != sender.view {
                     subView.alpha = 0
@@ -337,7 +338,6 @@ extension ViewController: THAlbumViewDelegate {
             self.tileImageScrollView.alpha = 1
         }, completion: { _ in
             self.imageSelected = true
-            self.albumView.removeFromSuperview()
             self.albumView.alpha = 0
             self.navigationItem.rightBarButtonItem?.title = "Editor"
             self.navigationItem.leftBarButtonItem?.title = "Back"

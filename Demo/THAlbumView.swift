@@ -10,9 +10,8 @@ import UIKit
 public protocol THAlbumViewDelegate: AnyObject {
     func tapEvent(sender: AnyObject)
 }
-
-open class THAlbumView: UIScrollView {
-    open var albumDelegate: THAlbumViewDelegate?
+class THAlbumView: UIScrollView {
+    weak var albumDelegate: THAlbumViewDelegate?
     private var firstRowY:CGFloat = 0
     private var secondRowY:CGFloat = 0
     private var index = 0
