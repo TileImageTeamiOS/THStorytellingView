@@ -64,10 +64,9 @@ class ViewController: UIViewController {
         // set contentview
         setContentView()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        showMarker()
+    func viewWillAppear() {
+        reloadMarker()
         backToInitialZoom()
-        self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
     }
     func setContentView() {
         // contentView set
@@ -128,27 +127,30 @@ class ViewController: UIViewController {
             NSLayoutConstraint(item: albumView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
             NSLayoutConstraint(item: albumView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         }
-        print(albumView.frame)
         albumView.backgroundColor = UIColor.white
         albumView.albumDelegate = self
         albumView.isScrollEnabled = true
         getThumbnailImages()
     }
-    func setMarkerView() {
-        contentMarkerController.markerRemove()
+    func reloadMarker() {
+        self.markerArray.removeAll()
+        for i in 0..<self.dataModel.markerArray.count {
+            self.markerArray.append(self.dataModel.markerArray[i])
+        }
         contentMarkerController.markerViewImage = UIImage(named: "page.png")
         contentMarkerController.markerViewSize = CGSize(width: 30, height: 30)
-        contentMarkerController.set(parentView: self.view, scrollView: self.tileImageScrollView)
+        self.contentMarkerController.removeMarker()
+        self.contentMarkerController.set(parentView: self.view, scrollView: self.tileImageScrollView)
         contentMarkerController.setMarkerFrame()
     }
     func showMarker() {
         dataModel.getMarkers(scrollView: tileImageScrollView) {_ in
-            self.markerArray.removeAll()
-            for i in 0..<self.dataModel.markerArray.count {
-                self.markerArray.append(self.dataModel.markerArray[i])
-            }
-            self.setMarkerView()
+            self.reloadMarker()
         }
+    }
+    func showExistingMarker() {
+        dataModel.getMarkers(scrollView: tileImageScrollView)
+        reloadMarker()
     }
     func setupMinimap(thumbnailImage: UIImage) {
         minimapDataSource = MyMinimapDataSource(scrollView: tileImageScrollView, thumbnailImage: thumbnailImage , originImageSize: imageSize)
@@ -158,7 +160,6 @@ class ViewController: UIViewController {
         minimapDataSource?.downSizeRatio = 5 * thumbnailImage.size.width / view.frame.width
         minimapView.set(dataSource: minimapDataSource!)
     }
-
     func setupEditor() {
         // edit center point 설정
         let naviHeight = (self.navigationController?.navigationBar.frame.height)!
@@ -204,12 +205,15 @@ class ViewController: UIViewController {
     // editor button 구현
     @objc func editorBtn() {
         if isSelected == true {
-            backToInitialZoom()
+            // delete marker
             markerArray.remove(at: selectedMarker)
-            setMarkerView()
-            UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
-                self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
-            })
+            dataModel.markerArray.remove(at: selectedMarker)
+            contentMarkerController.markerViewImage = UIImage(named: "page.png")
+            contentMarkerController.markerViewSize = CGSize(width: 30, height: 30)
+            contentMarkerController.removeMarker()
+            contentMarkerController.set(parentView: self.view, scrollView: self.tileImageScrollView)
+            contentMarkerController.setMarkerFrame()
+            backToInitialZoom()
             dataModel.deleteMarker(markerID: markerID)
         } else if isEditor == false {
             self.navigationItem.rightBarButtonItem?.title = "Done"
@@ -283,6 +287,7 @@ class ViewController: UIViewController {
 extension ViewController: THTiledImageScrollViewDelegate {
     func didZoom(scrollView: THTiledImageScrollView) {
         contentMarkerController.setMarkerFrame()
+        minimapDataSource?.resizeMinimapView(minimapView: minimapView)
     }
 
     func didScroll(scrollView: THTiledImageScrollView) {
@@ -305,13 +310,13 @@ extension ViewController: THContentMarkerControllerDataSource {
 }
 
 extension ViewController: THContentMarkerControllerDelegate {
-    func markerTap(_ contentMarkerController: THContentMarkerController, marker: THMarkerView) {
+    func markerTap(_ contentMarkerController: THContentMarkerController, markerView: THMarkerView) {
         isSelected = true
         navigationItem.rightBarButtonItem?.tintColor = UIColor.red
         self.navigationItem.rightBarButtonItem?.title = "Delete Marker"
         contentMarkerController.markerHidden(bool: true)
-        selectedMarker = marker.index
-        markerID = marker.markerID
+        selectedMarker = markerView.index
+        markerID = markerView.marker.markerID
     }
 }
 
@@ -349,7 +354,7 @@ extension ViewController: THAlbumViewDelegate {
             self.setupTileImage(thumbnail: self.thumbnailImgs[sender.view.tag])
             // set minimap
             self.setupMinimap(thumbnailImage: self.thumbnailImgs[sender.view.tag])
-            self.showMarker()
+            self.showExistingMarker()
             self.initialZoom = self.tileImageScrollView.zoomScale
         })
     }

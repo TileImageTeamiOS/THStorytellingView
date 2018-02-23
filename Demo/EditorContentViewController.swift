@@ -75,7 +75,7 @@ class EditorContentViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @objc func editorDone() {
-        var position = [String: CGFloat]()
+        var position = [String: Float]()
         var contents = [String: String]()
         contents["title"] = editorScrollView.titleText.text
         contents["video"] = editorScrollView.videoURLText.text
@@ -83,12 +83,34 @@ class EditorContentViewController: UIViewController {
         contents["textTitle"] = editorScrollView.textTitleText.text
         contents["text"] = editorScrollView.detailText.text
         contents["link"] = editorScrollView.linkText.text
-        position["x"] = positionX
-        position["y"] = positionY
-        position["zoomScale"] = zoom
-        dataModel.addMarker(position: position, contents: contents) {_ in
-            self.navigationController?.popViewController(animated: true)
+        position["x"] = Float(positionX)
+        position["y"] = Float(positionY)
+        position["zoomScale"] = Float(zoom)
+        let markerID = UUID().uuidString
+        var contentInfo = [String: Any]()
+        var textInfo = [String: String]()
+        if editorScrollView.titleText.text != "" {
+            contentInfo["titleContent"] = editorScrollView.titleText.text
         }
+        if editorScrollView.videoURLText.text != "" {
+            contentInfo["videoContent"] = editorScrollView.videoURLText.text
+        }
+        if editorScrollView.audioURLText.text != "" {
+            contentInfo["audioContent"] = editorScrollView.audioURLText.text
+        }
+        textInfo["title"] = editorScrollView.textTitleText.text
+        textInfo["link"] = editorScrollView.linkText.text
+        textInfo["text"] = editorScrollView.detailText.text
+        if editorScrollView.textTitleText.text != "" || editorScrollView.linkText.text != "" || editorScrollView.detailText.text != "" {
+            contentInfo["textContent"] = textInfo
+        }
+        let marker = THMarker(zoomScale: zoom, origin: CGPoint(x: positionX, y: positionY), markerID: markerID, contentInfo: contentInfo)
+        dataModel.markerArray.append(marker)
+        dataModel.addMarker(position: position, contents: contents, markerID: markerID)
+        if let rootVC = self.navigationController?.viewControllers[0] as? ViewController {
+            rootVC.viewWillAppear()
+        }
+        self.navigationController?.popViewController(animated: true)
     }
 }
 extension EditorContentViewController: UITextViewDelegate {

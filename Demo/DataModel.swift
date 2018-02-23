@@ -120,7 +120,7 @@ class DataModel {
             return 8
         }
     }
-    func getMarkers(scrollView: UIScrollView){
+    func getMarkers(scrollView: UIScrollView) {
         if let imgData = getData[imgPath] as? [String:Any] {
             if let markers = imgData["markers"] as? [String:Any] {
                 self.markerArray.removeAll()
@@ -135,25 +135,39 @@ class DataModel {
                     var content = [String: Any]()
                     if let contents = markerInfo["contents"] as? [String: Any] {
                         if let title = contents["title"] as? String {
-                            content["titleContent"] = title
+                            if title != "" {
+                                content["titleContent"] = title
+                            }
                         }
                         if let video = contents["video"] as? String {
-                            content["videoContent"] = URL(string: video)
+                            if video != "" {
+                                content["videoContent"] = URL(string: video)
+                            }
                         }
                         if let audio = contents["audio"] as? String {
-                            content["audioContent"] = URL(string: audio)
+                            if audio != "" {
+                                content["audioContent"] = URL(string: audio)
+                            }
                         }
                         var textContent = [String: String]()
                         if let textTitle = contents["textTitle"] as? String {
-                            textContent["title"] = textTitle
+                            if textTitle != "" {
+                                textContent["title"] = textTitle
+                            }
                         }
                         if let link = contents["link"] as? String {
-                            textContent["link"] = link
+                            if link != "" {
+                                textContent["link"] = link
+                            }
                         }
                         if let text = contents["text"] as? String {
-                            textContent["text"] = text
+                            if text != "" {
+                                textContent["text"] = text
+                            }
                         }
-                        content["textContent"] = textContent
+                        if textContent != [String: String]() {
+                            content["textContent"] = textContent
+                        }
                     }
                     let marker = THMarker(zoomScale: CGFloat(zoomScale!) , origin: CGPoint(x: CGFloat(x!), y: CGFloat(y!)), markerID: markerKeyArray[i], contentInfo: content)
                     self.markerArray.append(marker)
@@ -176,25 +190,39 @@ class DataModel {
                     var content = [String:Any]()
                     if let contents = markerInfo["contents"] as? [String: Any] {
                         if let title = contents["title"] as? String {
-                            content["titleContent"] = title
+                            if title != "" {
+                                content["titleContent"] = title
+                            }
                         }
                         if let video = contents["video"] as? String {
-                            content["videoContent"] = URL(string: video)
+                            if video != "" {
+                                content["videoContent"] = URL(string: video)
+                            }
                         }
                         if let audio = contents["audio"] as? String {
-                            content["audioContent"] = URL(string: audio)
+                            if audio != "" {
+                                content["audioContent"] = URL(string: audio)
+                            }
                         }
                         var textContent = [String: String]()
                         if let textTitle = contents["textTitle"] as? String {
-                            textContent["title"] = textTitle
+                            if textTitle != "" {
+                                textContent["title"] = textTitle
+                            }
                         }
                         if let link = contents["link"] as? String {
-                            textContent["link"] = link
+                            if link != "" {
+                                textContent["link"] = link
+                            }
                         }
                         if let text = contents["text"] as? String {
-                            textContent["text"] = text
+                            if text != "" {
+                                textContent["text"] = text
+                            }
                         }
-                        content["textContent"] = textContent
+                        if textContent != [String: String]() {
+                            content["textContent"] = textContent
+                        }
                     }
                     let marker = THMarker(zoomScale: CGFloat(zoomScale!) , origin: CGPoint(x: CGFloat(x!), y: CGFloat(y!)), markerID: markerKeyArray[i], contentInfo: content)
                     self.markerArray.append(marker)
@@ -203,17 +231,25 @@ class DataModel {
             completionHandler(true)
         })
     }
-    func addMarker(position: [String: CGFloat], contents: [String: String], completionHandler:@escaping (Bool) -> ()) {
-        refer.child(imgPath).child("markers").observeSingleEvent(of: .value, with: { (snapshot) in
-            let markerID = UUID().uuidString
-            self.refer.child(self.imgPath).child("markers").child(markerID).child("position").setValue(position)
-            self.refer.child(self.imgPath).child("markers").child(markerID).child("contents").setValue(contents)
-            completionHandler(true)
-        })
+    func addMarker(position: [String: Float], contents: [String: String], markerID: String) {
+        let markerInfo = ["position":position, "contents":contents] as [String : Any]
+        self.refer.child(self.imgPath).child("markers").child(markerID).setValue(markerInfo)
+        if var imgData = getData[imgPath] as? [String:Any] {
+            if var markers = imgData["markers"] as? [String:Any] {
+                markers[markerID] = markerInfo
+                imgData.updateValue(markers, forKey: "markers")
+                getData.updateValue(imgData, forKey: imgPath)
+            }
+        }
     }
     func deleteMarker(markerID: String) {
-        refer.child(imgPath).child("markers").observeSingleEvent(of: .value, with: { (snapshot) in
-            self.refer.child(self.imgPath).child("markers").child(markerID).removeValue()
-        })
+        self.refer.child(self.imgPath).child("markers").child(markerID).removeValue()
+        if var imgData = getData[imgPath] as? [String:Any] {
+            if var markers = imgData["markers"] as? [String:Any] {
+                markers.removeValue(forKey: markerID)
+                imgData.updateValue(markers, forKey: "markers")
+                getData.updateValue(imgData, forKey: imgPath)
+            }
+        }
     }
 }
