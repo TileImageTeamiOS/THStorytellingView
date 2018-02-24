@@ -54,4 +54,3 @@ extension THAlbumView: UIGestureRecognizerDelegate {
         albumDelegate?.tapEvent(sender: sender)
     }
 }
-

@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var minimapDataSource: THMinimapDataSource?
 
     //THMarker content set
-    var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
+    var contentMarkerController = THContentMarkerController()
     var markerArray = [THMarker]()
     var contentSetArray = [THContentSet]()
 
@@ -99,16 +99,15 @@ class ViewController: UIViewController {
         dataModel.getSnapshot() {_ in
             self.dataModel.getImgs()
             for index in 0..<self.dataModel.thumbnailURL.count {
-                ImageDownloader.default.downloadImage(with: self.dataModel.thumbnailURL[index], retrieveImageTask: nil,
-                                                      options: [], progressBlock: nil) { (image,error,urlData, _) in
-                                                        if error != nil {
-                                                            return
-                                                        } else {
-                                                            guard let image = image, let _ = urlData else { return }
-                                                            self.thumbnailImgs.append(image)
-                                                            self.albumView.addImage(image: image, imgKey: self.dataModel.imgKey[index])
-                                                            self.albumView.contentSize = CGSize(width: self.view.frame.width, height: self.albumView.getHeight())
-                                                        }
+                ImageDownloader.default.downloadImage(with: self.dataModel.thumbnailURL[index], retrieveImageTask: nil, options: [], progressBlock: nil) { (image,error,urlData, _) in
+                        if error != nil {
+                            return
+                        } else {
+                            guard let image = image, let _ = urlData else { return }
+                            self.thumbnailImgs.append(image)
+                            self.albumView.addImage(image: image, imgKey: self.dataModel.imgKey[index])
+                            self.albumView.contentSize = CGSize(width: self.view.frame.width, height: self.albumView.getHeight())
+                        }
                 }
             }
         }

@@ -197,6 +197,7 @@ class DataModel {
             }
         }
     }
+
     func getMarkers(scrollView: UIScrollView, completionHandler:@escaping (Bool) -> ()) {
         refer.child(imgPath).child("markers").observeSingleEvent(of: .value, with: { (snapshot) in
             if let markers = snapshot.value as? [String:Any] {

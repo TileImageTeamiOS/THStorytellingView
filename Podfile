@@ -6,11 +6,10 @@ target 'Demo' do
   use_frameworks!
 
   # Pods for Demo
-	pod "THTiledImageView"
-	pod 'SwiftLint'
-	pod "THScrollView-minimap"
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
-	pod ‘THContentMarkerView’
 	pod 'Kingfisher'
+  pod 'THContentMarkerView'
+  pod 'THTiledImageView'
+	pod 'THScrollView-minimap'
 end
