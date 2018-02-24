@@ -35,7 +35,6 @@ class ViewController: UIViewController {
     var selectedMarker = 0
     // image info
     var imageSize = CGSize()
-    var tiles: [CGSize] = [CGSize(width: 1024, height: 1024), CGSize(width: 512, height: 512), CGSize(width: 256, height: 256)]
     // data parsing
     var dataModel = DataModel()
     // albumView
@@ -185,6 +184,7 @@ class ViewController: UIViewController {
         } else {
             imageSize = thumbnail.size
         }
+        let tiles = dataModel.getTileSizeArray()
         tileImageDataSource = MyTileImageViewDataSource(tileImageBaseURL: tileImageBaseURL, imageSize: imageSize, tileSize: tiles)
         guard let dataSource = tileImageDataSource else { return }
 

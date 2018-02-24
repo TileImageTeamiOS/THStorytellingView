@@ -70,10 +70,10 @@ class DataModel {
             if let tileImageExtension = imgData["imgExtension"] as? String {
                 return tileImageExtension
             } else {
-                return ""
+                return "jpg"
             }
         } else {
-            return ""
+            return "jpg"
         }
     }
     func getImgSize() -> CGSize? {
@@ -119,6 +119,28 @@ class DataModel {
         } else {
             return 8
         }
+    }
+    func getTileSizeArray() -> [CGSize] {
+        var tileSize = [CGSize]()
+        let maxLevel = self.getMaxTileLevel()
+        let minLevel = self.getMinTileLevel()
+        if let imgData = getData[imgPath] as? [String:Any] {
+            if let tile = imgData["tile"] as? [String:Any] {
+                for index in minLevel...maxLevel {
+                    if let length = tile["level"+index.description] as? Int {
+                        let size = CGSize(width: length, height: length)
+                        print(size)
+                        tileSize.append(size)
+                    }
+                }
+            }
+        }
+        if tileSize.isEmpty {
+            for _ in minLevel...maxLevel {
+                tileSize.append(CGSize(width:10000, height:10000))
+            }
+        }
+        return tileSize
     }
     func getMarkers(scrollView: UIScrollView) {
         if let imgData = getData[imgPath] as? [String:Any] {
