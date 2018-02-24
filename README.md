@@ -16,7 +16,7 @@ This is the sample application for [THTiledImageView](https://github.com/TileIma
 - [x] High Quality images(8K, 12K or more) are downloaded and rendered asynchronously using [THTiledImageView](https://github.com/TileImageTeamiOS/THTiledImageView.git).
 - [x] Every markers in UIScrollView added using [THContentMarkerView](https://github.com/TileImageTeamiOS/THContentMarkerView). You can add markers on UIScrollView with contents by using THContentMarkerView.
 - [x] We set various examples of marker contents. Don't hesitate to see it. 🧐
-- [x][THScrollView-minimap](https://github.com/TileImageTeamiOS/THScrollView-minimap.git) let you know where you zoom in, when you zoom deep inside of UIScrollView.
+- [x] [THScrollView-minimap](https://github.com/TileImageTeamiOS/THScrollView-minimap.git) let you know where you zoom in, when you zoom deep inside of UIScrollView.
 - [x] In this app, we use [Firebase](https://firebase.google.com) for backend support.
 - [x] Pure Swift 4.0
 
@@ -65,28 +65,9 @@ $ pod install
 `THStorytellingView` is written in Swift 4, and compatible with iOS 9.0+
 
 
-
 ## Contributing
 
 Please look over these things first.
 - Please read our [Code of Conduct](https://github.com/MessageKit/MessageKit/blob/master/Code_of_Conduct.md)
 - Download the project and check out the current code base. Suggest any improvements by opening a new issue.
 - Please install [SwiftLint](https://github.com/realm/SwiftLint) to keep our conventions.
-
-
-
-## Contributing
-
-Please look over these things first.
-- Please read our [Code of Conduct](https://github.com/MessageKit/MessageKit/blob/master/Code_of_Conduct.md)
-- Check the [Contributing Guide Lines](https://github.com/MessageKit/MessageKit/blob/master/CONTRIBUTING.md).
-- Download the project and check out the current code base. Suggest any improvements by opening a new issue.
-- Check out the [current issues](https://github.com/MessageKit/MessageKit/issues) and see if you can tackle any of those.
-- Check out the [What's Next](#whats-next) section :point_down: to see where we are headed.
-- Please install [SwiftLint](https://github.com/realm/SwiftLint) to keep our conventions.
-
-
-
-## What's Next?
-
-Check out the [Releases](https://github.com/MessageKit/MessageKit/releases) to see what we are working on next.
