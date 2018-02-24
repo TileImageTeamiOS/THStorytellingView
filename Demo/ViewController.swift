@@ -72,19 +72,21 @@ class ViewController: UIViewController {
         // contentView set
         let videoKey = "videoContent"
         let thVideoContent = THVideoContentView()
-        thVideoContent.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y + 80, width: 150, height: 100)
-        thVideoContent.setContentView()
+        let width = self.view.frame.width*3/7
+        let frame = CGRect(x: self.view.center.x - width/2, y: self.view.center.y, width: width, height: width*2/3)
+        thVideoContent.setContentView(frame: frame)
         contentSetArray.append(THContentSet(contentKey: videoKey, contentView: thVideoContent))
         let audioKey = "audioContent"
         let thAudioContent = THAudioContentView()
-        thAudioContent.frame = CGRect(x: 0, y: 200, width: 80, height: 80)
+        thAudioContent.frame = CGRect(x: 0, y: self.view.center.y - 120, width: 70, height: 70)
         thAudioContent.setContentView()
         contentSetArray.append(THContentSet(contentKey: audioKey, contentView: thAudioContent))
         let titleKey = "titleContent"
         let thTitleContent = THTitleContentView()
         thTitleContent.frame.size = CGSize(width: 100, height: 50)
-        thTitleContent.center = self.view.center
-        thTitleContent.setView()
+        thTitleContent.center.x = self.view.center.x
+        thTitleContent.center.y = self.view.center.y - 80
+        thTitleContent.setView(fontSize: 27)
         contentSetArray.append(THContentSet(contentKey: titleKey, contentView: thTitleContent))
         let textKey = "textContent"
         let thTextContent = THTextContentView()
@@ -235,12 +237,14 @@ class ViewController: UIViewController {
         }
     }
     func backToAlbumView() {
+        markerArray.removeAll()
+        dataModel.markerArray.removeAll()
         imageSelected = false
         navigationItem.rightBarButtonItem?.title = ""
         navigationItem.leftBarButtonItem?.title = ""
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.leftBarButtonItem?.isEnabled = false
-        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
             self.selectedImage.frame = self.originFrame
             self.albumView.alpha = 1
             self.tileImageScrollView.alpha = 0
@@ -267,7 +271,7 @@ class ViewController: UIViewController {
         centerPoint.isHidden = true
         contentMarkerController.markerHidden(bool: false)
         contentMarkerController.contentDismiss()
-        UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+        UIView.animate(withDuration: 2.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
             self.tileImageScrollView.zoom(to: CGRect(x: 0, y: 0, width: (self.imageSize.width), height: (self.imageSize.height)), animated: false)
         })
     }
@@ -312,7 +316,6 @@ extension ViewController: THContentMarkerControllerDataSource {
 extension ViewController: THContentMarkerControllerDelegate {
     func markerTap(_ contentMarkerController: THContentMarkerController, markerView: THMarkerView) {
         isSelected = true
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.red
         self.navigationItem.rightBarButtonItem?.title = "Delete Marker"
         contentMarkerController.markerHidden(bool: true)
         selectedMarker = markerView.index
@@ -324,7 +327,7 @@ extension ViewController: THAlbumViewDelegate {
     func tapEvent(sender: AnyObject) {
         originFrame = sender.view.frame
         selectedImage = sender.view
-        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, options: [.allowUserInteraction], animations: {
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 0.66, animations: {
             self.albumView.bringSubview(toFront: sender.view)
             if (self.albumView.frame.height/self.albumView.frame.width) > (self.selectedImage.frame.height/self.selectedImage.frame.width) {
                 self.selectedImage.frame.origin.x = 0
