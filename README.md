@@ -1,17 +1,17 @@
 #  THStorytellingView
 
-![Version](https://img.shields.io/badge/pod-v0.2.1-blue.svg)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/younatics/YNDropDownMenu/blob/master/LICENSE)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
 ![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![Swift 4.0](https://img.shields.io/badge/Swift-4.0-%23FB613C.svg)](https://developer.apple.com/swift/)
 
+This is the sample application for [THTiledImageView](https://github.com/TileImageTeamiOS/THTiledImageView.git), [THContentMarkerView](https://github.com/TileImageTeamiOS/THContentMarkerView),
+ [THScrollView-minimap](https://github.com/TileImageTeamiOS/THScrollView-minimap.git) modules. You can see the feature of those libraries in this sample app.
+
+
 ## Feature
-
-- [x] You can make your own storytelling image by adding marker on the speicific position of the image.
-- [x] Each Marker can include its own title, video, audio, link, or text.
-- [x] Marker can be added or removed by user. 
-
+- [x] High Quality images(8K, 12k or more) are downloaded and rendered asynchronously using [THTiledImageView](https://github.com/TileImageTeamiOS/THTiledImageView.git).
+- [x] Every markers in UIScrollView added using [THContentMarkerView](https://github.com/TileImageTeamiOS/THContentMarkerView). You can add markers on UIScrollView with contents by using THContentMarkerView.
+- [x][THScrollView-minimap](https://github.com/TileImageTeamiOS/THScrollView-minimap.git) let you know where you zoom in, when you zoom deep inside of UIScrollView.
 
 ## Demo
 
@@ -36,22 +36,23 @@
 ![removeMarker](images/removeMarker.gif)
 
 
-## Pod
+## Installation
 
-We use the [THTiledImageView](https://github.com/TileImageTeamiOS/THTiledImageView.git), [THScrollView-minimap](https://github.com/TileImageTeamiOS/THScrollView-minimap.git) for `THStorytellingView`.
+### CocoaPods
 
+You can install the latest release version of CocoaPods with the following command
 
-To start `THStorytellingView`, set the dependency for the project:
-
+```bash
+$ gem install cocoapods
 ```
-pod setup
-pod install
+
+We already set `Podfile` for this app. So, just run the following command:
+
+```bash
+$ pod setup
+$ pod install
 ```
 
 ## Requirements
 
 `THStorytellingView` is written in Swift 4, and compatible with iOS 9.0+
-
-## License
-
-`THStorytellingView` is released under the MIT license. [See LICENSE](https://github.com/TileImageTeamiOS/THStorytellingView/blob/master/LICENSE) for details.
