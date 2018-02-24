@@ -7,39 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		041F9A55200C8FCD0047A223 /* OverwatchEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F9A54200C8FCD0047A223 /* OverwatchEx.swift */; };
-		041F9A5C200C9C840047A223 /* Bastion.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 041F9A5A200C9C820047A223 /* Bastion.mp4 */; };
-		041F9A5D200C9C840047A223 /* reinhardt.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 041F9A5B200C9C830047A223 /* reinhardt.mp4 */; };
-		041F9A60200C9E8C0047A223 /* mercy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 041F9A5E200C9E8B0047A223 /* mercy.mp3 */; };
-		041F9A61200C9E8C0047A223 /* hanzo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 041F9A5F200C9E8B0047A223 /* hanzo.mp3 */; };
+		044D7818202D797800FF8918 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044D7817202D63E500FF8918 /* GoogleService-Info.plist */; };
+		044D781A202D7D2400FF8918 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044D7819202D7D2400FF8918 /* DataModel.swift */; };
+		045BF4152033DB8F00BE9E23 /* THAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF4142033DB8F00BE9E23 /* THAlbumView.swift */; };
 		4EBE66C0200B47940091FA38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66BF200B47940091FA38 /* AppDelegate.swift */; };
 		4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66C1200B47940091FA38 /* ViewController.swift */; };
 		4EBE66C5200B47940091FA38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C3200B47940091FA38 /* Main.storyboard */; };
 		4EBE66C7200B47940091FA38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C6200B47940091FA38 /* Assets.xcassets */; };
 		4EBE66CA200B47940091FA38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C8200B47940091FA38 /* LaunchScreen.storyboard */; };
 		4EBE66D4200B4EA50091FA38 /* MyTileImageViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */; };
-		4EBE66D7200B500E0091FA38 /* shoppingSmall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */; };
-		4EBE66D8200B500E0091FA38 /* shopping.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66D6200B500E0091FA38 /* shopping.jpg */; };
 		4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */; };
-		4EBE66E4200B58440091FA38 /* MarkerViewDataSoucrce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */; };
-		4EBE66E5200B58440091FA38 /* VideoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DE200B58430091FA38 /* VideoContentView.swift */; };
 		4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */; };
-		4EBE66E7200B58440091FA38 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E0200B58430091FA38 /* MarkerView.swift */; };
-		4EBE66E8200B58440091FA38 /* TextContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E1200B58440091FA38 /* TextContentView.swift */; };
 		4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E2200B58440091FA38 /* EditorScrollView.swift */; };
-		4EBE66EA200B58440091FA38 /* AudioContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E3200B58440091FA38 /* AudioContentView.swift */; };
-		4EBE66EF200C77F40091FA38 /* overwatch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66ED200C77F40091FA38 /* overwatch.jpg */; };
-		4EBE66F0200C77F40091FA38 /* overwatchthumbnail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66EE200C77F40091FA38 /* overwatchthumbnail.jpg */; };
-		7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */; };
 		969EE020EFC1B0AE5FB4C614 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA760824E91B64E3E00480B /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		041F9A54200C8FCD0047A223 /* OverwatchEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverwatchEx.swift; sourceTree = "<group>"; };
-		041F9A5A200C9C820047A223 /* Bastion.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bastion.mp4; sourceTree = "<group>"; };
-		041F9A5B200C9C830047A223 /* reinhardt.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = reinhardt.mp4; sourceTree = "<group>"; };
-		041F9A5E200C9E8B0047A223 /* mercy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mercy.mp3; sourceTree = "<group>"; };
-		041F9A5F200C9E8B0047A223 /* hanzo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hanzo.mp3; sourceTree = "<group>"; };
+		044D7817202D63E500FF8918 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		044D7819202D7D2400FF8918 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		045BF4142033DB8F00BE9E23 /* THAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAlbumView.swift; sourceTree = "<group>"; };
 		4EBE66BC200B47940091FA38 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBE66BF200B47940091FA38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EBE66C1200B47940091FA38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,20 +34,10 @@
 		4EBE66C9200B47940091FA38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EBE66CB200B47940091FA38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTileImageViewDataSource.swift; sourceTree = "<group>"; };
-		4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shoppingSmall.jpg; sourceTree = "<group>"; };
-		4EBE66D6200B500E0091FA38 /* shopping.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shopping.jpg; sourceTree = "<group>"; };
 		4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMinimapDataSource.swift; sourceTree = "<group>"; };
-		4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerViewDataSoucrce.swift; sourceTree = "<group>"; };
-		4EBE66DE200B58430091FA38 /* VideoContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContentView.swift; sourceTree = "<group>"; };
 		4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
-		4EBE66E0200B58430091FA38 /* MarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
-		4EBE66E1200B58440091FA38 /* TextContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContentView.swift; sourceTree = "<group>"; };
 		4EBE66E2200B58440091FA38 /* EditorScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
-		4EBE66E3200B58440091FA38 /* AudioContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContentView.swift; sourceTree = "<group>"; };
-		4EBE66ED200C77F40091FA38 /* overwatch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = overwatch.jpg; sourceTree = "<group>"; };
-		4EBE66EE200C77F40091FA38 /* overwatchthumbnail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = overwatchthumbnail.jpg; sourceTree = "<group>"; };
 		50F14293CE24BA244426453A /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingVC.swift; sourceTree = "<group>"; };
 		8BB830D994E44811AB567785 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA760824E91B64E3E00480B /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -78,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044D7810202D5E0F00FF8918 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				4EBE66E2200B58440091FA38 /* EditorScrollView.swift */,
+				4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */,
+			);
+			name = Editor;
+			sourceTree = "<group>";
+		};
 		207976E34146251D9632194B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,13 +93,13 @@
 		4EBE66BE200B47940091FA38 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				044D7810202D5E0F00FF8918 /* Editor */,
 				4EBE66D2200B4BDC0091FA38 /* Resources */,
 				4EBE66D1200B4BC90091FA38 /* SupportingFiles */,
 				4EBE66DB200B56FB0091FA38 /* DataSource */,
-				4EBE66DC200B57A60091FA38 /* THScrollView-content */,
 				4EBE66C1200B47940091FA38 /* ViewController.swift */,
-				7EB83C65200B847100D8C91D /* ImageProcessingVC.swift */,
-				041F9A54200C8FCD0047A223 /* OverwatchEx.swift */,
+				045BF4142033DB8F00BE9E23 /* THAlbumView.swift */,
+				044D7819202D7D2400FF8918 /* DataModel.swift */,
 				4EBE66C3200B47940091FA38 /* Main.storyboard */,
 			);
 			path = Demo;
@@ -125,6 +110,7 @@
 			children = (
 				4EBE66BF200B47940091FA38 /* AppDelegate.swift */,
 				4EBE66CB200B47940091FA38 /* Info.plist */,
+				044D7817202D63E500FF8918 /* GoogleService-Info.plist */,
 				4EBE66C8200B47940091FA38 /* LaunchScreen.storyboard */,
 			);
 			name = SupportingFiles;
@@ -133,14 +119,6 @@
 		4EBE66D2200B4BDC0091FA38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				041F9A5F200C9E8B0047A223 /* hanzo.mp3 */,
-				041F9A5E200C9E8B0047A223 /* mercy.mp3 */,
-				041F9A5A200C9C820047A223 /* Bastion.mp4 */,
-				041F9A5B200C9C830047A223 /* reinhardt.mp4 */,
-				4EBE66ED200C77F40091FA38 /* overwatch.jpg */,
-				4EBE66EE200C77F40091FA38 /* overwatchthumbnail.jpg */,
-				4EBE66D5200B500C0091FA38 /* shoppingSmall.jpg */,
-				4EBE66D6200B500E0091FA38 /* shopping.jpg */,
 				4EBE66C6200B47940091FA38 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -153,20 +131,6 @@
 				4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */,
 			);
 			name = DataSource;
-			sourceTree = "<group>";
-		};
-		4EBE66DC200B57A60091FA38 /* THScrollView-content */ = {
-			isa = PBXGroup;
-			children = (
-				4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */,
-				4EBE66E2200B58440091FA38 /* EditorScrollView.swift */,
-				4EBE66E0200B58430091FA38 /* MarkerView.swift */,
-				4EBE66DD200B58430091FA38 /* MarkerViewDataSoucrce.swift */,
-				4EBE66E1200B58440091FA38 /* TextContentView.swift */,
-				4EBE66E3200B58440091FA38 /* AudioContentView.swift */,
-				4EBE66DE200B58430091FA38 /* VideoContentView.swift */,
-			);
-			path = "THScrollView-content";
 			sourceTree = "<group>";
 		};
 		5A02DE5C306F84A1A2620ACF /* Frameworks */ = {
@@ -240,17 +204,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EBE66D8200B500E0091FA38 /* shopping.jpg in Resources */,
-				4EBE66F0200C77F40091FA38 /* overwatchthumbnail.jpg in Resources */,
-				041F9A5C200C9C840047A223 /* Bastion.mp4 in Resources */,
-				4EBE66EF200C77F40091FA38 /* overwatch.jpg in Resources */,
-				041F9A5D200C9C840047A223 /* reinhardt.mp4 in Resources */,
+				044D7818202D797800FF8918 /* GoogleService-Info.plist in Resources */,
 				4EBE66CA200B47940091FA38 /* LaunchScreen.storyboard in Resources */,
 				4EBE66C7200B47940091FA38 /* Assets.xcassets in Resources */,
-				041F9A61200C9E8C0047A223 /* hanzo.mp3 in Resources */,
-				041F9A60200C9E8C0047A223 /* mercy.mp3 in Resources */,
 				4EBE66C5200B47940091FA38 /* Main.storyboard in Resources */,
-				4EBE66D7200B500E0091FA38 /* shoppingSmall.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,13 +267,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/THContentMarkerView/THContentMarkerView.framework",
 				"${BUILT_PRODUCTS_DIR}/THScrollView-minimap/THScrollView_minimap.framework",
 				"${BUILT_PRODUCTS_DIR}/THTiledImageView/THTiledImageView.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THContentMarkerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THScrollView_minimap.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THTiledImageView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -330,18 +297,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EBE66E7200B58440091FA38 /* MarkerView.swift in Sources */,
-				4EBE66E4200B58440091FA38 /* MarkerViewDataSoucrce.swift in Sources */,
-				041F9A55200C8FCD0047A223 /* OverwatchEx.swift in Sources */,
+				045BF4152033DB8F00BE9E23 /* THAlbumView.swift in Sources */,
 				4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */,
-				7EB83C66200B847100D8C91D /* ImageProcessingVC.swift in Sources */,
+				044D781A202D7D2400FF8918 /* DataModel.swift in Sources */,
 				4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */,
-				4EBE66E8200B58440091FA38 /* TextContentView.swift in Sources */,
 				4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */,
 				4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */,
-				4EBE66EA200B58440091FA38 /* AudioContentView.swift in Sources */,
 				4EBE66D4200B4EA50091FA38 /* MyTileImageViewDataSource.swift in Sources */,
-				4EBE66E5200B58440091FA38 /* VideoContentView.swift in Sources */,
 				4EBE66C0200B47940091FA38 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y4TX5PVNK4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -498,7 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y4TX5PVNK4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
