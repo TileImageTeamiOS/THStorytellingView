@@ -22,26 +22,7 @@ This is the sample application for [THTiledImageView](https://github.com/TileIma
 
 ## Demo
 
-### Pick Marker
-![markerPick](images/markerPick.gif)
-
-### Video
-![video](images/video.gif)
-
-### Audio
-![audio](images/audio.gif)
-
-### Text And Link
-![textAndLink](images/textAndLink.gif)
-
-### Add Marker
-
-![addMarker](images/markerAdd.gif)
-
-### Remove Marker
-
-![removeMarker](images/removeMarker.gif)
-
+// TODO
 
 ## Installation
 
@@ -64,10 +45,9 @@ $ pod install
 
 `THStorytellingView` is written in Swift 4, and compatible with iOS 9.0+
 
-
 ## Contributing
 
 Please look over these things first.
-- Please read our [Code of Conduct](https://github.com/MessageKit/MessageKit/blob/master/Code_of_Conduct.md)
+- Please read our [Code of Conduct](https://github.com/TileImageTeamiOS/THStorytellingView/blob/master/Code_of_Conduct.md)
 - Download the project and check out the current code base. Suggest any improvements by opening a new issue.
 - Please install [SwiftLint](https://github.com/realm/SwiftLint) to keep our conventions.
