@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/TileImageTeamiOS/THStorytellingView.svg?branch=master)](https://travis-ci.org/TileImageTeamiOS/THStorytellingView)
 ![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)
-[![License](https://cocoapod-badges.herokuapp.com/l/THStorytellingView/badge.png)](https://github.com/TileImageTeamiOS/THStorytellingView)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/younatics/YNDropDownMenu/blob/master/LICENSE)
 [![Swift 4.0](https://img.shields.io/badge/Swift-4.0-%23FB613C.svg)](https://developer.apple.com/swift/)
 <a href="https://developer.apple.com/xcode">
   <img src="https://img.shields.io/badge/Xcode-9-blue.svg"
