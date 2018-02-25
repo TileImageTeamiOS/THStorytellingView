@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var minimapDataSource: THMinimapDataSource?
 
     //THMarker content set
-    var contentMarkerController = THContentMarkerController(duration: 3.0, delay: 0.0, initialSpringVelocity: 0.66)
+    var contentMarkerController = THContentMarkerController()
     var markerArray = [THMarker]()
     var contentSetArray = [THContentSet]()
 

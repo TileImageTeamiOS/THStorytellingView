@@ -22,7 +22,13 @@ This is the sample application for [THTiledImageView](https://github.com/TileIma
 
 ## Demo
 
-// TODO
+| High Quality Images |Tile Image View|
+|--------|--------|
+|![super_image](images/super_image.gif) |![star](images/star.gif) |
+
+| Stroy Telling View|Explain View|
+|--------|--------|
+|![marker](images/marker.gif) |![explain](images/explain.gif) |
 
 ## Installation
 
@@ -40,6 +46,26 @@ We already set `Podfile` for this app. So, just run the following command:
 $ pod setup
 $ pod install
 ```
+
+### Server
+
+
+
+To receive a tile, you must place it on your local or server. The tiles in the demo are available at [https://github.com/grohong/flask](https://github.com/grohong/flask).
+
+```bash
+$ git clone git@github.com:grohong/flask.git
+```
+
+Servers created based on flask will work by using the corresponding command in that directory.
+
+```bash
+$ python image_render.py
+```
+
+### Marker Info
+
+Marker information is currently managed using firebase. Please contact [hjw01234@gmail.co](mailto: hjw01234@gmail.com) to use marker information.
 
 ## Requirements
 
