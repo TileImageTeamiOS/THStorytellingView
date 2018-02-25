@@ -78,3 +78,7 @@ Please look over these things first.
 - Please read our [Code of Conduct](https://github.com/TileImageTeamiOS/THStorytellingView/blob/master/Code_of_Conduct.md)
 - Download the project and check out the current code base. Suggest any improvements by opening a new issue.
 - Please install [SwiftLint](https://github.com/realm/SwiftLint) to keep our conventions.
+
+## License
+
+`THStorytellingView` is released under the MIT license. [See LICENSE](https://github.com/TileImageTeamiOS/THStorytellingView/blob/master/LICENSE) for details.
