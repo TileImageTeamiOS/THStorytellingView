@@ -12,6 +12,7 @@ env:
 before_install:
   - brew update
   - pod repo update
+  - DEVELOPER_DIR=/Applications/Xcode 4.4.1.app/Contents/Developer
 
 script:
   - xcodebuild -project Demo.xcodeproj -target Demo -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
