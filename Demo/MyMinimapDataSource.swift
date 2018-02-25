@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import THScrollView_minimap
+import THScrollViewMinimap
 
 class MyMinimapDataSource: THMinimapDataSource {
     var originImageSize: CGSize?

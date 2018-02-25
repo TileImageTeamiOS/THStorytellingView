@@ -8,7 +8,7 @@
 
 import UIKit
 import THTiledImageView
-import THScrollView_minimap
+import THScrollViewMinimap
 import THContentMarkerView
 import Kingfisher
 

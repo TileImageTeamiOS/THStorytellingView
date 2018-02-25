@@ -14,7 +14,6 @@ before_install:
   - pod repo update
 
 script:
-  - DEVELOPER_DIR=/Applications/Xcode 4.4.1.app/Contents/Developer
   - xcodebuild -project Demo.xcodeproj -target Demo -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 
 after_success:
