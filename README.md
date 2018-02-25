@@ -66,7 +66,7 @@ $ python image_render.py
 
 ### Marker Info
 
-Marker information is currently managed using firebase. Please contact [hjw01234@gmail.co](mailto: hjw01234@gmail.com) to use marker information.
+Marker information is currently managed using firebase. Please contact [hjw01234@gmail.com](mailto:hjw01234@gmail.com) to use marker information.
 
 ## Requirements
 
