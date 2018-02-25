@@ -11,6 +11,7 @@ env:
 
 before_install:
   - brew update
+  - pod repo update
 
 script:
   - xcodebuild -project Demo.xcodeproj -target Demo -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
