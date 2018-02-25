@@ -23,7 +23,7 @@ class MyTileImageViewDataSource: THTiledImageViewDataSource {
     var tileImageBaseURL: URL?
     var accessFromServer: Bool
     var scrollViewSize: CGSize?
-    
+
     init(tileImageBaseURL: URL? = nil, imageSize: CGSize, tileSize: [CGSize]) {
         if let tileImageBaseURL = tileImageBaseURL {
             self.tileImageBaseURL = tileImageBaseURL
