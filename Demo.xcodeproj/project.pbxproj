@@ -7,25 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		044D7818202D797800FF8918 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044D7817202D63E500FF8918 /* GoogleService-Info.plist */; };
 		044D781A202D7D2400FF8918 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044D7819202D7D2400FF8918 /* DataModel.swift */; };
 		045BF4152033DB8F00BE9E23 /* THAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF4142033DB8F00BE9E23 /* THAlbumView.swift */; };
+		4E5EC47F2042E14A00C83D06 /* MyMinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5EC47E2042E14A00C83D06 /* MyMinimapDataSource.swift */; };
+		4EB26BA72042E9D200A24C48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EB26BA62042E9D200A24C48 /* GoogleService-Info.plist */; };
 		4EBE66C0200B47940091FA38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66BF200B47940091FA38 /* AppDelegate.swift */; };
 		4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66C1200B47940091FA38 /* ViewController.swift */; };
 		4EBE66C5200B47940091FA38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C3200B47940091FA38 /* Main.storyboard */; };
 		4EBE66C7200B47940091FA38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C6200B47940091FA38 /* Assets.xcassets */; };
 		4EBE66CA200B47940091FA38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE66C8200B47940091FA38 /* LaunchScreen.storyboard */; };
 		4EBE66D4200B4EA50091FA38 /* MyTileImageViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */; };
-		4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */; };
 		4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */; };
 		4EBE66E9200B58440091FA38 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBE66E2200B58440091FA38 /* EditorScrollView.swift */; };
 		969EE020EFC1B0AE5FB4C614 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA760824E91B64E3E00480B /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		044D7817202D63E500FF8918 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		044D7819202D7D2400FF8918 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		045BF4142033DB8F00BE9E23 /* THAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAlbumView.swift; sourceTree = "<group>"; };
+		4E5EC47E2042E14A00C83D06 /* MyMinimapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMinimapDataSource.swift; sourceTree = "<group>"; };
+		4EB26BA62042E9D200A24C48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4EBE66BC200B47940091FA38 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBE66BF200B47940091FA38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EBE66C1200B47940091FA38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,7 +35,6 @@
 		4EBE66C9200B47940091FA38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EBE66CB200B47940091FA38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTileImageViewDataSource.swift; sourceTree = "<group>"; };
-		4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMinimapDataSource.swift; sourceTree = "<group>"; };
 		4EBE66DF200B58430091FA38 /* EditorContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorContentViewController.swift; sourceTree = "<group>"; };
 		4EBE66E2200B58440091FA38 /* EditorScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
 		50F14293CE24BA244426453A /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
@@ -108,9 +108,9 @@
 		4EBE66D1200B4BC90091FA38 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				4EB26BA62042E9D200A24C48 /* GoogleService-Info.plist */,
 				4EBE66BF200B47940091FA38 /* AppDelegate.swift */,
 				4EBE66CB200B47940091FA38 /* Info.plist */,
-				044D7817202D63E500FF8918 /* GoogleService-Info.plist */,
 				4EBE66C8200B47940091FA38 /* LaunchScreen.storyboard */,
 			);
 			name = SupportingFiles;
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				4EBE66D3200B4EA50091FA38 /* MyTileImageViewDataSource.swift */,
-				4EBE66D9200B540A0091FA38 /* MyMinimapDataSource.swift */,
+				4E5EC47E2042E14A00C83D06 /* MyMinimapDataSource.swift */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -204,10 +204,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				044D7818202D797800FF8918 /* GoogleService-Info.plist in Resources */,
 				4EBE66CA200B47940091FA38 /* LaunchScreen.storyboard in Resources */,
 				4EBE66C7200B47940091FA38 /* Assets.xcassets in Resources */,
 				4EBE66C5200B47940091FA38 /* Main.storyboard in Resources */,
+				4EB26BA72042E9D200A24C48 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +270,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/THContentMarkerView/THContentMarkerView.framework",
-				"${BUILT_PRODUCTS_DIR}/THScrollView-minimap/THScrollView_minimap.framework",
+				"${BUILT_PRODUCTS_DIR}/THScrollViewMinimap/THScrollViewMinimap.framework",
 				"${BUILT_PRODUCTS_DIR}/THTiledImageView/THTiledImageView.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -280,7 +280,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THContentMarkerView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THScrollView_minimap.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THScrollViewMinimap.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THTiledImageView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -297,8 +297,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E5EC47F2042E14A00C83D06 /* MyMinimapDataSource.swift in Sources */,
 				045BF4152033DB8F00BE9E23 /* THAlbumView.swift in Sources */,
-				4EBE66DA200B540A0091FA38 /* MyMinimapDataSource.swift in Sources */,
 				044D781A202D7D2400FF8918 /* DataModel.swift in Sources */,
 				4EBE66C2200B47940091FA38 /* ViewController.swift in Sources */,
 				4EBE66E6200B58440091FA38 /* EditorContentViewController.swift in Sources */,
