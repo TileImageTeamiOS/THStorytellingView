@@ -2,12 +2,12 @@
 //  MyMinimapDataSource.swift
 //  Demo
 //
-//  Created by Seong ho Hong on 2018. 1. 14..
+//  Created by Seong ho Hong on 2018. 2. 25..
 //  Copyright © 2018년 Seong ho Hong. All rights reserved.
 //
 
 import UIKit
-import THScrollView_minimap
+import THScrollViewMinimap
 
 class MyMinimapDataSource: THMinimapDataSource {
     var originImageSize: CGSize?

@@ -8,7 +8,7 @@
 
 import UIKit
 import THTiledImageView
-import THScrollView_minimap
+import THScrollViewMinimap
 import THContentMarkerView
 import Kingfisher
 
@@ -159,6 +159,7 @@ class ViewController: UIViewController {
         minimapDataSource?.borderColor = UIColor.red
         minimapDataSource?.borderWidth = 2.0
         minimapDataSource?.downSizeRatio = 5 * thumbnailImage.size.width / view.frame.width
+
         minimapView.set(dataSource: minimapDataSource!)
     }
     func setupEditor() {
