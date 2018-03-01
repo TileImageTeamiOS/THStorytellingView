@@ -1,4 +1,4 @@
-#  THStorytellingView
+![THStorytellingView](images/THStorytellingView.png)
 
 [![Build Status](https://travis-ci.org/TileImageTeamiOS/THStorytellingView.svg?branch=master)](https://travis-ci.org/TileImageTeamiOS/THStorytellingView)
 ![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)
